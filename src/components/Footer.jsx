@@ -5,7 +5,7 @@ import InstagramIcon from './InstagramIcon';
 import { TwitterIcon, YoutubeIcon, LinkedinIcon } from './SocialIcons';
 
 const SOCIAL_LINKS = [
-  { name: 'Instagram', icon: InstagramIcon, href: 'https://instagram.com' },
+  { name: 'Instagram', icon: InstagramIcon, href: 'https://www.instagram.com/maa.mala_/' },
   { name: 'Twitter', icon: TwitterIcon, href: 'https://twitter.com' },
   { name: 'YouTube', icon: YoutubeIcon, href: 'https://youtube.com' },
   { name: 'LinkedIn', icon: LinkedinIcon, href: 'https://linkedin.com' },
@@ -36,7 +36,15 @@ export default function Footer() {
               </span>
             </a>
             <p className="text-xs sm:text-sm text-slate-400 max-w-sm">
-              Authentic stories, high-converting short-form media, and creator showcases by MAA MALA™.
+              Authentic stories, high-converting short-form media, and creator showcases by{' '}
+              <a
+                href="https://www.instagram.com/maa.mala_/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-pink-400 hover:underline font-semibold"
+              >
+                @maa.mala_
+              </a>.
             </p>
           </div>
 
@@ -52,7 +60,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   whileHover={{ y: -3, scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-10 h-10 rounded-2xl glass-card border border-white/10 flex items-center justify-center text-slate-300 hover:text-white hover:border-emerald-500/50 hover:bg-emerald-500/10 transition-colors"
+                  className="w-10 h-10 rounded-2xl glass-card border border-white/10 flex items-center justify-center text-slate-300 hover:text-white hover:border-pink-500/50 hover:bg-pink-500/10 transition-colors"
                   aria-label={s.name}
                 >
                   <Icon className="w-4 h-4" />
@@ -64,7 +72,7 @@ export default function Footer() {
 
         {/* Bottom copyright & Back to top button */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-          <p>© {new Date().getFullYear()} MAA MALA™ Showcase Studio. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} MAA MALA™ Official (@maa.mala_). All rights reserved.</p>
 
           <motion.button
             onClick={scrollToTop}
