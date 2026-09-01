@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Play, ExternalLink, ChevronLeft, ChevronRight, RefreshCw } from 'lucide-react';
+import { ExternalLink, ChevronLeft, ChevronRight, RefreshCw } from 'lucide-react';
 import { useInstagramFeed } from '../hooks/useInstagramFeed';
 import InstagramIcon from './InstagramIcon';
 
@@ -124,15 +124,6 @@ export default function ReelsSection() {
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-nature-950/90 via-nature-950/20 to-transparent opacity-80 group-hover:opacity-70 transition-opacity" />
-
-                  {/* Centered Play Icon for Video / Reel Media */}
-                  {isVideo && (
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-12 h-12 rounded-full bg-ivory-100/90 text-nature-950 flex items-center justify-center shadow-xl group-hover:scale-110 group-hover:bg-ivory-100 transition-all duration-300">
-                        <Play className="w-5 h-5 fill-nature-950 text-nature-950 ml-0.5" />
-                      </div>
-                    </div>
-                  )}
 
                   {/* Minimal Editorial Overlay Text */}
                   <div className="absolute bottom-6 left-6 right-6 text-left">
