@@ -29,13 +29,13 @@ export default function Navbar() {
           initial={{ y: -40, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className={`relative rounded-full transition-all duration-500 py-3 px-6 sm:px-8 border shadow-2xl ${
+          className={`relative rounded-2xl sm:rounded-full transition-all duration-500 py-3.5 px-6 sm:px-10 border shadow-2xl ${
             scrolled
-              ? 'bg-nature-950/90 backdrop-blur-2xl border-ivory-100/15 py-2.5'
-              : 'bg-nature-950/40 backdrop-blur-md border-ivory-100/10'
+              ? 'bg-nature-950/95 backdrop-blur-2xl border-ivory-100/20 py-3'
+              : 'bg-nature-950/50 backdrop-blur-md border-ivory-100/10'
           }`}
         >
-          <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center justify-between gap-6">
             {/* Brand Logo Left */}
             <a href="#home" className="flex items-center gap-3 group shrink-0">
               <div className="w-8 h-8 rounded-full overflow-hidden border border-ivory-100/20 p-0.5 bg-nature-900 shrink-0">
@@ -75,10 +75,10 @@ export default function Navbar() {
                 href="https://wa.me/919400921124?text=Hi%20MAA%20MALA,%20I%20want%20to%20book%20Strangers%20Camp"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-4.5 py-1.5 rounded-full bg-forest hover:bg-forest-hover text-ivory-100 font-semibold text-xs tracking-wider uppercase shadow-lg transition-all border border-white/10 whitespace-nowrap"
+                className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-forest hover:bg-forest-hover text-ivory-100 font-semibold text-xs tracking-wider uppercase shadow-lg transition-all border border-white/10 whitespace-nowrap"
               >
                 <span>Book Adventure</span>
-                <ArrowUpRight className="w-3.5 h-3.5 text-ivory-200" />
+                <ArrowUpRight className="w-3.5 h-3.5 text-ivory-200 shrink-0" />
               </a>
             </div>
 
