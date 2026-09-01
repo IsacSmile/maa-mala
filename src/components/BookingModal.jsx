@@ -1,11 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, PhoneCall, AlertCircle, CheckCircle2, Plus, Minus } from 'lucide-react';
+import { X, PhoneCall, AlertCircle, CheckCircle2, Plus, Minus, Compass } from 'lucide-react';
 
 const WHATSAPP_NUMBER = '919400921124';
 
+const ADVENTURE_OPTIONS = [
+  'Strangers Camp @ Kakkadampoyil (Sep 05–06)',
+  'Tent & Cottage Stay',
+  'Offroad Jeep Safari',
+  'Stream & Forest Hiking',
+  'Campfire Jam & Acoustic Night',
+];
+
 export default function BookingModal({ isOpen, onClose }) {
   const [formData, setFormData] = useState({
+    adventureName: ADVENTURE_OPTIONS[0],
     fullName: '',
     mobile: '',
     maleCount: 1,
@@ -57,12 +66,17 @@ export default function BookingModal({ isOpen, onClose }) {
   const validate = () => {
     const newErrors = {};
 
-    // 1. Name validation
+    // 1. Adventure Name validation
+    if (!formData.adventureName) {
+      newErrors.adventureName = 'Please select an adventure';
+    }
+
+    // 2. Name validation
     if (!formData.fullName.trim()) {
       newErrors.fullName = 'Full Name is required';
     }
 
-    // 2. Mobile validation (Indian format check)
+    // 3. Mobile validation (Indian format check)
     const cleanedMobile = formData.mobile.replace(/[\s\-\+]/g, '');
     const mobileDigits = cleanedMobile.startsWith('91') && cleanedMobile.length === 12 ? cleanedMobile.slice(2) : cleanedMobile;
     const indianMobileRegex = /^[6-9]\d{9}$/;
@@ -73,7 +87,7 @@ export default function BookingModal({ isOpen, onClose }) {
       newErrors.mobile = 'Please enter a valid 10-digit Indian mobile number';
     }
 
-    // 3. Guest count validation (Must select at least 1 guest)
+    // 4. Guest count validation (Must select at least 1 guest)
     if (totalGuests < 1) {
       newErrors.guests = 'Please select at least 1 guest (Male or Female)';
     }
@@ -90,7 +104,7 @@ export default function BookingModal({ isOpen, onClose }) {
     const calculatedTotal = totalPrice.toLocaleString('en-IN');
 
     // Construct pre-filled WhatsApp message
-    const message = `Hello, I would like to book Strangers Camp @ Kakkadampoyil.
+    const message = `Hello, I would like to book ${formData.adventureName}.
 
 Name: ${formData.fullName.trim()}
 Mobile: ${formData.mobile.trim()}
@@ -138,7 +152,7 @@ Please share the booking details and availability.`;
             <div className="flex items-center justify-between border-b border-ivory-100/10 pb-4 mb-6">
               <div>
                 <span className="text-[10px] font-semibold tracking-widest uppercase text-gold block">
-                  STRANGERS CAMP · KAKKADAMPOYIL
+                  MAA MALA™ EXPEDITIONS
                 </span>
                 <h2 className="text-xl sm:text-2xl font-serif font-bold text-ivory-100 mt-0.5">
                   Book Your Adventure
@@ -172,7 +186,35 @@ Please share the booking details and availability.`;
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-                {/* 1. Full Name */}
+                {/* 1. Adventure Name Selection */}
+                <div>
+                  <label htmlFor="adventureName" className="block text-xs font-semibold uppercase tracking-wider text-warmgray-400 mb-1.5 flex items-center gap-1.5">
+                    <Compass className="w-3.5 h-3.5 text-gold shrink-0" />
+                    <span>Adventure Package</span> <span className="text-gold">*</span>
+                  </label>
+                  <div className="relative">
+                    <select
+                      id="adventureName"
+                      name="adventureName"
+                      value={formData.adventureName}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 rounded-lg bg-nature-900 border border-ivory-100/15 text-xs sm:text-sm text-ivory-100 focus:outline-none focus:ring-1 focus:ring-gold transition-colors appearance-none cursor-pointer"
+                    >
+                      {ADVENTURE_OPTIONS.map((opt) => (
+                        <option key={opt} value={opt} className="bg-nature-950 text-ivory-100">
+                          {opt}
+                        </option>
+                      ))}
+                    </select>
+                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-warmgray-400">
+                      <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                        <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 2. Full Name */}
                 <div>
                   <label htmlFor="fullName" className="block text-xs font-semibold uppercase tracking-wider text-warmgray-400 mb-1.5">
                     Full Name <span className="text-gold">*</span>
@@ -196,7 +238,7 @@ Please share the booking details and availability.`;
                   )}
                 </div>
 
-                {/* 2. Mobile Number */}
+                {/* 3. Mobile Number */}
                 <div>
                   <label htmlFor="mobile" className="block text-xs font-semibold uppercase tracking-wider text-warmgray-400 mb-1.5">
                     Mobile Number <span className="text-gold">*</span>
@@ -221,7 +263,7 @@ Please share the booking details and availability.`;
                   )}
                 </div>
 
-                {/* 3. Gender Steppers Grid (Male & Female) */}
+                {/* 4. Gender Steppers Grid (Male & Female) */}
                 <div>
                   <label className="block text-xs font-semibold uppercase tracking-wider text-warmgray-400 mb-1.5">
                     Select Guests <span className="text-gold">*</span>
