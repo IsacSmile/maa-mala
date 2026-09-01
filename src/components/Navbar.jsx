@@ -29,13 +29,13 @@ export default function Navbar({ onOpenBooking }) {
           initial={{ y: -40, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className={`relative rounded-2xl sm:rounded-full transition-all duration-500 py-3.5 px-6 sm:px-8 border shadow-2xl ${
+          className={`relative rounded-full transition-all duration-500 py-3.5 px-5 sm:px-8 border shadow-2xl ${
             scrolled
               ? 'bg-nature-950/95 backdrop-blur-2xl border-ivory-100/20 py-3'
               : 'bg-nature-950/50 backdrop-blur-md border-ivory-100/10'
           }`}
         >
-          <div className="flex items-center justify-between gap-6">
+          <div className="flex items-center justify-between gap-4 sm:gap-6">
             {/* Brand Logo Left */}
             <a href="#home" className="flex items-center gap-3 group shrink-0">
               <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full overflow-hidden border border-ivory-100/20 p-0.5 bg-nature-900 shrink-0 shadow-md">
@@ -84,7 +84,7 @@ export default function Navbar({ onOpenBooking }) {
             <div className="lg:hidden flex items-center">
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2 rounded-xl bg-ivory-100/10 text-ivory-100 focus:outline-none"
+                className="p-2 rounded-full bg-ivory-100/10 text-ivory-100 focus:outline-none"
                 aria-label="Toggle Menu"
               >
                 {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
