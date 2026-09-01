@@ -23,16 +23,16 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 py-4 pointer-events-none transition-all duration-300">
+    <header className="fixed top-0 left-0 right-0 z-50 px-3 sm:px-6 py-4 pointer-events-none transition-all duration-300">
       <div className="max-w-5xl mx-auto pointer-events-auto">
         <motion.nav
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className={`relative rounded-2xl sm:rounded-full transition-all duration-500 py-3 px-5 sm:px-6 border border-ivory-100/15 shadow-2xl ${
+          className={`relative rounded-2xl sm:rounded-full transition-all duration-500 py-2.5 px-6 sm:px-8 border border-ivory-100/15 shadow-2xl ${
             scrolled
-              ? 'bg-nature-950/90 backdrop-blur-2xl border-ivory-100/20'
-              : 'bg-nature-900/80 backdrop-blur-xl border-ivory-100/10'
+              ? 'bg-nature-950/95 backdrop-blur-2xl border-ivory-100/20'
+              : 'bg-nature-900/85 backdrop-blur-xl border-ivory-100/10'
           }`}
         >
           <div className="flex items-center justify-between gap-4">
@@ -61,7 +61,7 @@ export default function Navbar() {
             </a>
 
             {/* Center Navigation Links (Generous Spacing) */}
-            <nav className="hidden lg:flex items-center gap-7">
+            <nav className="hidden lg:flex items-center gap-6">
               {NAV_ITEMS.map((item) => (
                 <a
                   key={item.name}
@@ -81,10 +81,10 @@ export default function Navbar() {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.96 }}
-                className="inline-flex items-center gap-2 px-4.5 py-2 rounded-full bg-forest hover:bg-forest-hover text-ivory-100 font-semibold text-xs tracking-wider uppercase shadow-lg transition-all border border-white/10"
+                className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-forest hover:bg-forest-hover text-ivory-100 font-semibold text-[11px] sm:text-xs tracking-wider uppercase shadow-lg transition-all border border-white/10 whitespace-nowrap"
               >
                 <span>Book Adventure</span>
-                <ArrowUpRight className="w-3.5 h-3.5 text-ivory-200" />
+                <ArrowUpRight className="w-3.5 h-3.5 text-ivory-200 shrink-0" />
               </motion.a>
             </div>
 
@@ -128,7 +128,7 @@ export default function Navbar() {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={() => setMobileMenuOpen(false)}
-                      className="w-full flex items-center justify-center gap-2 py-2.5 rounded-full bg-forest text-ivory-100 font-semibold text-xs uppercase tracking-wider shadow-md"
+                      className="w-full flex items-center justify-center gap-2 py-2 rounded-full bg-forest text-ivory-100 font-semibold text-xs uppercase tracking-wider shadow-md"
                     >
                       <span>Book Adventure</span>
                       <ArrowUpRight className="w-3.5 h-3.5" />
