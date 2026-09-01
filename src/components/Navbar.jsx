@@ -23,22 +23,22 @@ export default function Navbar({ onOpenBooking }) {
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-8 py-5 pointer-events-none transition-all duration-500">
+    <header className="fixed top-0 left-0 right-0 z-50 px-3.5 sm:px-8 py-3.5 sm:py-5 pointer-events-none transition-all duration-500">
       <div className="max-w-6xl mx-auto pointer-events-auto">
         <motion.nav
           initial={{ y: -40, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className={`relative rounded-full transition-all duration-500 py-3.5 px-5 sm:px-8 border shadow-2xl ${
+          className={`relative rounded-full transition-all duration-500 py-2.5 sm:py-3.5 px-4.5 sm:px-8 border shadow-2xl ${
             scrolled
-              ? 'bg-nature-950/95 backdrop-blur-2xl border-ivory-100/20 py-3'
+              ? 'bg-nature-950/95 backdrop-blur-2xl border-ivory-100/20 py-2 sm:py-3'
               : 'bg-nature-950/50 backdrop-blur-md border-ivory-100/10'
           }`}
         >
-          <div className="flex items-center justify-between gap-4 sm:gap-6">
+          <div className="flex items-center justify-between gap-3 sm:gap-6">
             {/* Brand Logo Left */}
-            <a href="#home" className="flex items-center gap-3 group shrink-0">
-              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full overflow-hidden border border-ivory-100/20 p-0.5 bg-nature-900 shrink-0 shadow-md">
+            <a href="#home" className="flex items-center gap-2.5 sm:gap-3 group shrink-0">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden border border-ivory-100/20 p-0.5 bg-nature-900 shrink-0 shadow-md">
                 <img
                   src="/images/logo.png"
                   alt="MAA MALA™ Logo"
@@ -50,7 +50,7 @@ export default function Navbar({ onOpenBooking }) {
                 <span className="font-extrabold text-xs sm:text-sm tracking-tight text-ivory-100 leading-none">
                   MAA MALA<span className="text-gold">™</span>
                 </span>
-                <span className="text-[7.5px] sm:text-[8.5px] text-gold tracking-[0.18em] font-semibold uppercase mt-0.5 whitespace-nowrap">
+                <span className="text-[7px] sm:text-[8.5px] text-gold tracking-[0.16em] font-semibold uppercase mt-0.5 whitespace-nowrap">
                   Trails • Peace • Stories
                 </span>
               </div>
@@ -84,10 +84,10 @@ export default function Navbar({ onOpenBooking }) {
             <div className="lg:hidden flex items-center">
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2 rounded-full bg-ivory-100/10 text-ivory-100 focus:outline-none"
+                className="p-1.5 sm:p-2 rounded-full bg-ivory-100/10 text-ivory-100 focus:outline-none"
                 aria-label="Toggle Menu"
               >
-                {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+                {mobileMenuOpen ? <X className="w-4.5 h-4.5 sm:w-5 sm:h-5" /> : <Menu className="w-4.5 h-4.5 sm:w-5 sm:h-5" />}
               </button>
             </div>
           </div>
