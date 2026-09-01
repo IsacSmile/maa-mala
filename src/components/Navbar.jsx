@@ -23,8 +23,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 py-4 pointer-events-none transition-all duration-300">
-      {/* Reduced Max Width Container for sleek floating appearance */}
+    <header className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 py-3 pointer-events-none transition-all duration-300">
       <div className="max-w-4xl mx-auto pointer-events-auto">
         <motion.nav
           initial={{ y: -50, opacity: 0 }}
@@ -32,8 +31,8 @@ export default function Navbar() {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className={`relative rounded-full transition-all duration-500 ${
             scrolled
-              ? 'glass-nav shadow-emerald-glow border-white/15 py-2.5 px-5 sm:px-6 bg-charcoal-950/90 backdrop-blur-2xl'
-              : 'glass-nav border-white/12 py-3 px-5 sm:px-6 bg-charcoal-900/70 backdrop-blur-xl'
+              ? 'glass-nav shadow-emerald-glow border-white/15 py-2 px-4 sm:px-5 bg-charcoal-950/90 backdrop-blur-2xl'
+              : 'glass-nav border-white/12 py-2 px-4 sm:px-5 bg-charcoal-900/70 backdrop-blur-xl'
           }`}
         >
           <div className="flex items-center justify-between gap-3">
@@ -42,7 +41,7 @@ export default function Navbar() {
               <motion.div
                 whileHover={{ scale: 1.08, rotate: 3 }}
                 whileTap={{ scale: 0.95 }}
-                className="w-9 h-9 rounded-full overflow-hidden ring-2 ring-forest-400/40 p-0.5 bg-forest-900 shrink-0"
+                className="w-8 h-8 rounded-full overflow-hidden ring-2 ring-forest-400/40 p-0.5 bg-forest-900 shrink-0"
               >
                 <img
                   src="/images/logo.png"
@@ -52,10 +51,10 @@ export default function Navbar() {
               </motion.div>
 
               <div className="flex flex-col text-left">
-                <span className="font-extrabold text-sm sm:text-base tracking-tight text-cream flex items-center gap-1 leading-none">
+                <span className="font-extrabold text-xs sm:text-sm tracking-tight text-cream flex items-center gap-1 leading-none">
                   MAA MALA<span className="text-gold-400">™</span>
                 </span>
-                <span className="text-[9px] text-gold-400 tracking-wider font-bold uppercase mt-0.5">
+                <span className="text-[8.5px] text-gold-400 tracking-wider font-bold uppercase mt-0.5">
                   Trails • Peace • Stories
                 </span>
               </div>
@@ -67,22 +66,22 @@ export default function Navbar() {
                 <a
                   key={item.name}
                   href={item.href}
-                  className="relative px-3.5 py-1 text-xs font-medium text-slate-300 hover:text-cream transition-all rounded-full hover:bg-white/10"
+                  className="relative px-3 py-1 text-xs font-medium text-slate-300 hover:text-cream transition-all rounded-full hover:bg-white/10"
                 >
                   {item.name}
                 </a>
               ))}
             </div>
 
-            {/* Right Action Button with Compact Full Pill */}
+            {/* Compact Action Button (Reduced Height) */}
             <div className="hidden sm:flex items-center shrink-0">
               <motion.a
                 href="https://wa.me/919400921124?text=Hi%20MAA%20MALA,%20I%20want%20to%20book%20Strangers%20Camp"
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ scale: 1.04, boxShadow: '0 0 25px rgba(245, 158, 11, 0.4)' }}
+                whileHover={{ scale: 1.04, boxShadow: '0 0 20px rgba(245, 158, 11, 0.4)' }}
                 whileTap={{ scale: 0.96 }}
-                className="flex items-center gap-1.5 px-4.5 py-2 rounded-full bg-gradient-to-r from-gold-500 via-forest-600 to-forest-700 text-cream font-bold text-xs shadow-lg border border-white/20 transition-all whitespace-nowrap shrink-0"
+                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-gold-500 via-forest-600 to-forest-700 text-cream font-bold text-xs shadow-md border border-white/20 transition-all whitespace-nowrap shrink-0"
               >
                 <Compass className="w-3.5 h-3.5 text-cream shrink-0" />
                 <span>Book Adventure</span>
@@ -95,7 +94,7 @@ export default function Navbar() {
               <motion.button
                 whileTap={{ scale: 0.9 }}
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2 rounded-full bg-white/10 text-cream border border-white/10"
+                className="p-1.5 rounded-full bg-white/10 text-cream border border-white/10"
                 aria-label="Toggle menu"
               >
                 {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
@@ -113,25 +112,25 @@ export default function Navbar() {
                 transition={{ duration: 0.3 }}
                 className="lg:hidden overflow-hidden mt-3 pt-3 border-t border-white/10"
               >
-                <div className="flex flex-col gap-2 pb-2">
+                <div className="flex flex-col gap-1.5 pb-2">
                   {NAV_ITEMS.map((item) => (
                     <a
                       key={item.name}
                       href={item.href}
                       onClick={() => setMobileMenuOpen(false)}
-                      className="px-4 py-2.5 rounded-2xl text-slate-200 hover:text-cream hover:bg-forest-500/20 font-medium text-xs transition-colors flex items-center justify-between"
+                      className="px-4 py-2 rounded-2xl text-slate-200 hover:text-cream hover:bg-forest-500/20 font-medium text-xs transition-colors flex items-center justify-between"
                     >
                       <span>{item.name}</span>
                       <ArrowUpRight className="w-3.5 h-3.5 text-slate-400" />
                     </a>
                   ))}
-                  <div className="pt-2 mt-2 border-t border-white/10">
+                  <div className="pt-2 mt-1 border-t border-white/10">
                     <a
                       href="https://wa.me/919400921124?text=Hi%20MAA%20MALA,%20I%20want%20to%20book%20Strangers%20Camp"
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={() => setMobileMenuOpen(false)}
-                      className="w-full flex items-center justify-center gap-2 py-2.5 rounded-full bg-gradient-to-r from-gold-500 to-forest-600 text-cream font-bold text-xs shadow-md"
+                      className="w-full flex items-center justify-center gap-2 py-2 rounded-full bg-gradient-to-r from-gold-500 to-forest-600 text-cream font-bold text-xs shadow-md"
                     >
                       <Compass className="w-3.5 h-3.5" />
                       <span>Book Your Adventure</span>
