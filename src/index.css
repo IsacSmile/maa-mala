@@ -4,35 +4,35 @@
 
 @layer base {
   body {
-    background-color: #060d09;
+    background-color: #081c15;
     background-image: 
-      radial-gradient(at 0% 0%, rgba(4, 76, 43, 0.25) 0px, transparent 50%),
-      radial-gradient(at 100% 10%, rgba(16, 185, 129, 0.15) 0px, transparent 50%),
-      radial-gradient(at 50% 100%, rgba(99, 102, 241, 0.12) 0px, transparent 50%);
+      radial-gradient(at 0% 0%, rgba(27, 67, 50, 0.4) 0px, transparent 50%),
+      radial-gradient(at 100% 10%, rgba(234, 88, 12, 0.18) 0px, transparent 50%),
+      radial-gradient(at 50% 100%, rgba(64, 145, 108, 0.3) 0px, transparent 50%);
     background-attachment: fixed;
   }
 }
 
-/* Custom Scrollbar */
+/* Custom Nature Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(6, 13, 9, 0.8);
+  background: rgba(8, 28, 21, 0.9);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(82, 183, 136, 0.3);
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(16, 185, 129, 0.5);
+  background: rgba(234, 88, 12, 0.6);
 }
 
-/* Hide scrollbar for clean horizontal scrolling containers */
+/* Hide scrollbar for smooth horizontal containers */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
@@ -43,10 +43,10 @@
 
 /* Glassmorphism Utility Classes */
 .glass-card {
-  background: rgba(10, 24, 17, 0.7);
+  background: rgba(13, 43, 29, 0.75);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .glass-card-hover {
@@ -54,27 +54,27 @@
 }
 
 .glass-card-hover:hover {
-  background: rgba(14, 34, 24, 0.85);
-  border-color: rgba(16, 185, 129, 0.3);
-  box-shadow: 0 12px 40px -10px rgba(16, 185, 129, 0.25);
+  background: rgba(27, 67, 50, 0.85);
+  border-color: rgba(82, 183, 136, 0.4);
+  box-shadow: 0 16px 40px -10px rgba(82, 183, 136, 0.25);
 }
 
 .glass-nav {
-  background: rgba(6, 16, 11, 0.75);
+  background: rgba(8, 28, 21, 0.8);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, #ffffff 0%, #a7f3d0 50%, #34d399 100%);
+  background: linear-gradient(135deg, #fdfbf7 0%, #74c69d 50%, #52b788 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.text-gradient-insta {
-  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+.text-gradient-earth {
+  background: linear-gradient(135deg, #f97316 0%, #fbbf24 50%, #52b788 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
