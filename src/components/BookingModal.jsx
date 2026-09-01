@@ -204,7 +204,7 @@ Please share the booking details and availability.`;
                     }`}
                   />
                   {errors.fullName && (
-                    <span className="text-[11px] text-red-400 mt-1 block flex items-center gap-1">
+                    <span className="text-[11px] text-red-400 mt-1 flex items-center gap-1">
                       <AlertCircle className="w-3 h-3 shrink-0" />
                       <span>{errors.fullName}</span>
                     </span>
@@ -229,7 +229,7 @@ Please share the booking details and availability.`;
                     }`}
                   />
                   {errors.mobile && (
-                    <span className="text-[11px] text-red-400 mt-1 block flex items-center gap-1">
+                    <span className="text-[11px] text-red-400 mt-1 flex items-center gap-1">
                       <AlertCircle className="w-3 h-3 shrink-0" />
                       <span>{errors.mobile}</span>
                     </span>
