@@ -4,7 +4,7 @@ import { PhoneCall, ArrowRight, ArrowDown } from 'lucide-react';
 
 export default function Hero() {
   return (
-    <section id="home" className="relative min-h-[85vh] sm:min-h-[92vh] flex items-center justify-center text-center text-ivory-100 overflow-hidden pt-28 pb-16">
+    <section id="home" className="relative h-[99vh] min-h-[99vh] flex items-center justify-center text-center text-ivory-100 overflow-hidden pt-28 pb-16">
       {/* Full-Viewport Cinematic Background Image */}
       <div className="absolute inset-0 z-0">
         <img
