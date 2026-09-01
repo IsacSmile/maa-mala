@@ -3,85 +3,48 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
   body {
-    background-color: #070b09;
-    background-image: 
-      radial-gradient(at 0% 0%, rgba(18, 56, 40, 0.45) 0px, transparent 55%),
-      radial-gradient(at 100% 20%, rgba(217, 119, 6, 0.15) 0px, transparent 50%),
-      radial-gradient(at 50% 100%, rgba(38, 109, 80, 0.3) 0px, transparent 60%);
-    background-attachment: fixed;
-    color: #fdfbf7;
+    background-color: #07100D;
+    color: #F5F5F0;
+    font-family: 'Inter', system-ui, sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
   }
 }
 
-/* Atmospheric Mountain Fog & Subtle Texture */
-.atmospheric-fog {
-  background: radial-gradient(circle at 50% 30%, rgba(53, 140, 103, 0.15) 0%, rgba(7, 11, 9, 0.85) 75%);
+.text-gradient-gold {
+  background: linear-gradient(135deg, #F5F5F0 0%, #D4AF37 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-/* Custom Nature Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+.editorial-divider {
+  border-color: rgba(245, 245, 240, 0.1);
 }
 
-::-webkit-scrollbar-track {
-  background: rgba(7, 11, 9, 0.95);
+.glass-header {
+  background: rgba(7, 16, 13, 0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(245, 245, 240, 0.08);
 }
 
-::-webkit-scrollbar-thumb {
-  background: rgba(79, 184, 139, 0.3);
-  border-radius: 9999px;
+.glass-card {
+  background: rgba(16, 31, 26, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(245, 245, 240, 0.08);
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(245, 158, 11, 0.6);
-}
-
-/* Hide scrollbars for smooth momentum scrolling */
+/* Hide scrollbar for Chrome, Safari and Opera */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
+/* Hide scrollbar for IE, Edge and Firefox */
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
-}
-
-/* Luxury Glassmorphism Utilities */
-.glass-card {
-  background: rgba(11, 27, 19, 0.75);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-}
-
-.glass-card-hover {
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.glass-card-hover:hover {
-  background: rgba(18, 56, 40, 0.85);
-  border-color: rgba(245, 158, 11, 0.4);
-  box-shadow: 0 20px 50px -15px rgba(245, 158, 11, 0.2);
-}
-
-.glass-nav {
-  background: rgba(7, 11, 9, 0.85);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-}
-
-.text-gradient-gold {
-  background: linear-gradient(135deg, #fdfbf7 0%, #fbbf24 50%, #f59e0b 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.text-gradient-emerald {
-  background: linear-gradient(135deg, #fdfbf7 0%, #7ad4ab 50%, #358c67 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
 }

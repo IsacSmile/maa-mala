@@ -1,221 +1,216 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { PhoneCall, Compass, Calendar, MapPin, CheckCircle2, Tag, Sparkles } from 'lucide-react';
+import { PhoneCall, ArrowRight, MapPin, Calendar, Tag, Star, Check } from 'lucide-react';
 import { HERO_STATS } from '../data/mockData';
 
 export default function Hero() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { y: 30, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.75, ease: [0.215, 0.61, 0.355, 1] },
-    },
-  };
-
   return (
-    <section id="home" className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden atmospheric-fog">
-      {/* Handcrafted Background Layers: Atmospheric Fog, Mountain Silhouette & Soft Radial Glows */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-forest-600/18 rounded-full blur-[170px] pointer-events-none -z-10" />
-      <div className="absolute top-1/3 right-10 w-[500px] h-[500px] bg-gold-500/12 rounded-full blur-[150px] pointer-events-none -z-10" />
-      <div className="absolute inset-0 bg-gradient-to-b from-charcoal-950/60 via-transparent to-charcoal-950 pointer-events-none -z-10" />
+    <section id="home" className="relative pt-36 pb-24 md:pt-48 md:pb-36 bg-nature-950 text-ivory-100 overflow-hidden">
+      {/* Subtle Atmospheric Background Glow */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-forest/10 rounded-full blur-[180px] pointer-events-none -z-10" />
 
-      <div className="max-w-5xl mx-auto px-4 sm:px-6">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="flex flex-col items-center text-center"
-        >
-          {/* Small Floating Pill Badge */}
-          <motion.div variants={itemVariants} className="mb-6">
-            <div className="inline-flex items-center gap-2.5 px-4.5 py-1.5 rounded-full bg-black/70 border border-gold-500/40 text-cream text-xs font-bold tracking-wider shadow-2xl backdrop-blur-xl">
-              <span className="flex h-2 w-2 relative">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-gold-500"></span>
-              </span>
-              <span className="text-gold-400 font-extrabold tracking-widest uppercase">UPCOMING CAMP</span>
-              <span className="text-slate-500">•</span>
-              <span className="text-cream font-bold">SEP 05–06</span>
-              <span className="text-slate-500">•</span>
-              <span className="text-emerald-300 font-semibold">Kakkadampoyil</span>
-            </div>
-          </motion.div>
+      <div className="max-w-7xl mx-auto px-6 sm:px-10">
+        {/* Main Hero Header */}
+        <div className="max-w-4xl mx-auto text-center flex flex-col items-center">
+          {/* Eyebrow */}
+          <motion.span
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-xs font-semibold uppercase tracking-[0.25em] text-gold mb-6 block"
+          >
+            STRANGERS CAMP · KAKKADAMPOYIL
+          </motion.span>
 
-          {/* Main Headline (Two Lines: White Serif + Gold Amber Gradient) */}
+          {/* Large Editorial Headline */}
           <motion.h1
-            variants={itemVariants}
-            className="text-4xl sm:text-6xl lg:text-7xl font-serif font-black tracking-tight text-cream max-w-4xl leading-[1.12]"
+            initial={{ opacity: 0, y: 25 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="text-4xl sm:text-6xl lg:text-7xl font-serif font-extrabold tracking-tight leading-[1.1] text-ivory-100"
           >
             Strangers Camp @ <br />
-            <span className="text-gradient-gold">
-              Kakkadampoyil
-            </span>
+            <span className="italic font-normal text-gold">Kakkadampoyil</span>
           </motion.h1>
 
-          {/* Malayalam Quote & Short English Subtitle */}
-          <motion.div variants={itemVariants} className="mt-6 flex flex-col items-center gap-2.5 max-w-2xl">
-            <p className="text-lg sm:text-2xl font-extrabold text-emerald-300 tracking-wide drop-shadow-md">
+          {/* Malayalam & English Supporting Statement */}
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="mt-6 flex flex-col items-center gap-3 max-w-2xl"
+          >
+            <p className="text-xl sm:text-2xl font-serif italic text-ivory-200">
               "പാട്ടും കഥകളുമായി കക്കാടംപൊയിലിൽ കൂടിയാലോ?"
             </p>
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal max-w-xl">
-              Experience an exclusive 2-day luxury outdoor getaway with MAA MALA™. Includes Tent & Cottage Stays, Offroad Jeep Safari, Night Campfire, Stream Hiking & Live Music.
+            <p className="text-sm sm:text-base text-warmgray-400 leading-relaxed font-sans max-w-xl">
+              An exclusive 2-day outdoor getaway in the misty hills of Kakkadampoyil. Featuring Tent Stays, Offroad Jeep Safari, Campfire Jam & Stream Hiking.
             </p>
           </motion.div>
 
-          {/* Two Side-by-Side Handcrafted Buttons (Refined Heights & Micro-Interactions) */}
+          {/* CTA Buttons */}
           <motion.div
-            variants={itemVariants}
-            className="mt-8 flex flex-col sm:flex-row items-center gap-3.5 w-full sm:w-auto"
+            initial={{ opacity: 0, y: 25 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.3 }}
+            className="mt-10 flex flex-col sm:flex-row items-center gap-5 w-full sm:w-auto"
           >
-            {/* Primary Button: Solid Warm Green with Soft Glow */}
             <motion.a
               href="https://wa.me/919400921124?text=Hi%20MAA%20MALA,%20I%20want%20to%20book%20Strangers%20Camp%20at%20Kakkadampoyil"
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ scale: 1.04, boxShadow: '0 0 30px rgba(53, 140, 103, 0.45)' }}
-              whileTap={{ scale: 0.96 }}
-              className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-6 py-2.5 rounded-full bg-gradient-to-r from-emerald-600 via-forest-600 to-forest-700 text-cream font-extrabold text-sm shadow-xl border border-white/20 transition-all"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-3.5 rounded-lg bg-forest hover:bg-forest-hover text-ivory-100 font-semibold text-xs tracking-wider uppercase shadow-xl transition-all border border-white/10"
             >
-              <PhoneCall className="w-4 h-4 text-cream shrink-0" />
+              <PhoneCall className="w-4 h-4 text-ivory-100 shrink-0" />
               <span>Book via WhatsApp</span>
             </motion.a>
 
-            {/* Secondary Button: Outlined Glass Fill */}
-            <motion.a
+            <a
               href="#reels"
-              whileHover={{ scale: 1.03, backgroundColor: 'rgba(255, 255, 255, 0.12)' }}
-              whileTap={{ scale: 0.96 }}
-              className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-2.5 rounded-full glass-card border border-white/20 text-slate-200 hover:text-cream font-bold text-sm transition-all"
+              className="text-xs font-semibold uppercase tracking-widest text-warmgray-400 hover:text-ivory-100 transition-colors flex items-center gap-2 py-2"
             >
-              <Compass className="w-4 h-4 text-gold-400 shrink-0" />
-              <span>View Camp Photos & Gallery</span>
-            </motion.a>
+              <span>View Camp Gallery</span>
+              <ArrowRight className="w-3.5 h-3.5 text-gold" />
+            </a>
           </motion.div>
+        </div>
 
-          {/* Event Details Card */}
-          <motion.div
-            variants={itemVariants}
-            whileHover={{ y: -4, transition: { duration: 0.3 } }}
-            className="mt-14 w-full max-w-4xl rounded-3xl overflow-hidden glass-card border border-white/20 p-5 sm:p-7 relative shadow-luxury text-left"
-          >
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
-              {/* Left: Event Poster Image */}
-              <div className="md:col-span-5 relative aspect-[4/5] w-full rounded-2xl overflow-hidden shadow-xl border border-white/15 group">
-                <img
-                  src="/images/strangers_camp.jpg"
-                  alt="MAA MALA Strangers Camp Kakkadampoyil Poster"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute top-3 left-3 px-2.5 py-0.5 rounded-full bg-charcoal-950/85 backdrop-blur-md text-gold-400 font-extrabold text-[9px] uppercase tracking-widest border border-gold-500/30">
-                  OFFICIAL EVENT POSTER
-                </div>
+        {/* Camp Details Editorial Showcase */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="mt-20 sm:mt-28 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center border-t border-ivory-100/10 pt-16"
+        >
+          {/* Left: Large Cinematic Imagery */}
+          <div className="lg:col-span-6 relative aspect-[4/5] sm:aspect-[16/10] lg:aspect-[4/5] w-full rounded-xl overflow-hidden shadow-2xl group border border-white/10">
+            <img
+              src="/images/strangers_camp.jpg"
+              alt="MAA MALA Strangers Camp Kakkadampoyil Poster"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-nature-950/80 via-transparent to-transparent" />
+            <div className="absolute bottom-6 left-6 text-left">
+              <span className="text-[10px] font-semibold tracking-widest uppercase text-gold block mb-1">
+                EXCLUSIVITY GUARANTEED
+              </span>
+              <span className="text-lg font-serif font-bold text-ivory-100">
+                Kakkadampoyil Highlands Edition
+              </span>
+            </div>
+          </div>
+
+          {/* Right: Editorial Metadata & Highlights */}
+          <div className="lg:col-span-6 flex flex-col justify-between text-left gap-8 pl-0 lg:pl-6">
+            <div>
+              <span className="text-xs font-semibold uppercase tracking-widest text-gold block mb-2">
+                CAMP DETAILS
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-serif font-extrabold text-ivory-100">
+                Strangers Camp Experience
+              </h2>
+              <p className="mt-3 text-sm text-warmgray-400 leading-relaxed font-sans max-w-lg">
+                Join a curated group of outdoor enthusiasts. Reconnect with nature, enjoy live campfire music, and explore hidden mountain streams in total peace.
+              </p>
+            </div>
+
+            {/* Editorial Metadata Grid */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 py-6 border-y border-ivory-100/10">
+              <div>
+                <span className="text-[10px] font-semibold tracking-widest uppercase text-warmgray-400 block mb-1">
+                  LOCATION
+                </span>
+                <span className="text-sm font-semibold text-ivory-100">
+                  Kakkadampoyil
+                </span>
               </div>
-
-              {/* Right: Event Information */}
-              <div className="md:col-span-7 flex flex-col justify-between h-full gap-3.5">
-                <div>
-                  <div className="flex items-center gap-2 text-xs font-extrabold text-gold-400 uppercase tracking-widest mb-1">
-                    <MapPin className="w-3.5 h-3.5" />
-                    <span>Kakkadampoyil, Kerala</span>
-                  </div>
-
-                  <h3 className="text-xl sm:text-2xl font-serif font-black text-cream">
-                    MAA MALA™ Strangers Camp
-                  </h3>
-
-                  <div className="flex flex-wrap items-center gap-2.5 mt-2.5">
-                    <span className="px-3 py-1 rounded-xl bg-forest-900/90 text-forest-300 border border-forest-500/30 text-xs font-bold flex items-center gap-1.5">
-                      <Calendar className="w-3.5 h-3.5 text-forest-400" />
-                      <span>Sep 05–06</span>
-                    </span>
-                    <span className="px-3 py-1 rounded-xl bg-gold-600/20 text-gold-300 border border-gold-500/30 text-xs font-bold flex items-center gap-1.5">
-                      <Tag className="w-3.5 h-3.5 text-gold-400" />
-                      <span>₹1,799 / Head</span>
-                    </span>
-                  </div>
-                </div>
-
-                {/* Key Highlights Grid */}
-                <div className="grid grid-cols-2 gap-2 text-xs text-slate-200 font-medium py-3 border-y border-white/10">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                    <span>Night Camping & Stay</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                    <span>Offroad Jeep Safari</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                    <span>Campfire & Music</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                    <span>Dinner & Breakfast</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                    <span>Stream Hiking Trek</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                    <span>Fun Games & Activities</span>
-                  </div>
-                </div>
-
-                {/* Direct WhatsApp Booking Row */}
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pt-1">
-                  <div className="flex flex-col">
-                    <span className="text-[9px] text-slate-400 uppercase font-semibold">Direct WhatsApp Booking</span>
-                    <span className="text-sm sm:text-base font-bold text-gold-400">+91 9400 921 124</span>
-                  </div>
-
-                  <a
-                    href="https://wa.me/919400921124?text=Hi%20MAA%20MALA,%20I%20want%20to%20book%20Strangers%20Camp"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-4 py-2 rounded-full bg-forest-600 hover:bg-forest-500 text-cream font-bold text-xs shadow-md transition-colors text-center"
-                  >
-                    Reserve Seats Now
-                  </a>
-                </div>
+              <div>
+                <span className="text-[10px] font-semibold tracking-widest uppercase text-warmgray-400 block mb-1">
+                  DATE
+                </span>
+                <span className="text-sm font-semibold text-ivory-100">
+                  Sep 05–06
+                </span>
+              </div>
+              <div>
+                <span className="text-[10px] font-semibold tracking-widest uppercase text-warmgray-400 block mb-1">
+                  PACKAGE
+                </span>
+                <span className="text-sm font-extrabold text-gold">
+                  ₹1,799 / Head
+                </span>
+              </div>
+              <div>
+                <span className="text-[10px] font-semibold tracking-widest uppercase text-warmgray-400 block mb-1">
+                  RATING
+                </span>
+                <span className="text-sm font-semibold text-ivory-100 flex items-center gap-1">
+                  4.9 <Star className="w-3.5 h-3.5 fill-gold text-gold inline" />
+                </span>
               </div>
             </div>
-          </motion.div>
 
-          {/* Stats Cards Section */}
-          <motion.div
-            variants={itemVariants}
-            className="mt-10 w-full grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-5 max-w-4xl"
-          >
-            {HERO_STATS.map((stat) => (
-              <motion.div
-                key={stat.label}
-                whileHover={{ y: -4, borderColor: 'rgba(245, 158, 11, 0.4)' }}
-                className="p-4 rounded-3xl glass-card border border-white/10 text-center relative overflow-hidden group shadow-lg"
+            {/* Inclusions List */}
+            <div className="space-y-2.5 text-xs font-medium text-ivory-200">
+              <div className="flex items-center gap-3">
+                <Check className="w-4 h-4 text-gold shrink-0" />
+                <span>Tent & Cottage Camping Accommodations</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <Check className="w-4 h-4 text-gold shrink-0" />
+                <span>Offroad Jeep Safari & Stream Hiking Trail</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <Check className="w-4 h-4 text-gold shrink-0" />
+                <span>Night Campfire Jam Session & Live Music</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <Check className="w-4 h-4 text-gold shrink-0" />
+                <span>Dinner & Breakfast Food Included</span>
+              </div>
+            </div>
+
+            {/* Direct Booking Link */}
+            <div className="pt-2">
+              <a
+                href="https://wa.me/919400921124?text=Hi%20MAA%20MALA,%20I%20want%20to%20book%20Strangers%20Camp"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-xs font-bold tracking-wider uppercase text-ivory-100 hover:text-gold transition-colors"
               >
-                <div className="absolute inset-0 bg-gradient-to-b from-gold-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="text-xl sm:text-3xl font-extrabold text-cream tracking-tight text-gradient-gold">
-                  {stat.value}
-                </div>
-                <div className="text-[11px] sm:text-xs text-slate-300 font-medium mt-1">
-                  {stat.label}
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
+                <span>Reserve Seats Direct via WhatsApp (+91 9400 921 124)</span>
+                <ArrowRight className="w-4 h-4" />
+              </a>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Clean Metadata Horizontal Strip (Stats) */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="mt-20 py-8 border-y border-ivory-100/10 grid grid-cols-2 md:grid-cols-4 gap-8 text-center"
+        >
+          {HERO_STATS.map((stat, idx) => (
+            <div
+              key={stat.label}
+              className={`flex flex-col items-center ${
+                idx !== HERO_STATS.length - 1 ? 'md:border-r md:border-ivory-100/10' : ''
+              }`}
+            >
+              <span className="text-3xl sm:text-4xl font-serif font-extrabold text-ivory-100">
+                {stat.value}
+              </span>
+              <span className="text-[11px] font-semibold tracking-widest uppercase text-warmgray-400 mt-1">
+                {stat.label}
+              </span>
+            </div>
+          ))}
         </motion.div>
       </div>
     </section>
