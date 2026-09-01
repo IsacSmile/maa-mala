@@ -24,19 +24,16 @@ export default function Navbar({ onOpenBooking }) {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-8 py-3.5 sm:py-5 pointer-events-none transition-all duration-500">
-      <div className="max-w-6xl mx-auto pointer-events-auto">
+      <div className="max-w-6xl mx-auto pointer-events-auto relative">
+        {/* Main Floating Navbar Pill */}
         <motion.nav
           initial={{ y: -40, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className={`relative transition-all duration-500 py-2.5 sm:py-3.5 px-5 sm:px-8 border shadow-2xl ${
-            mobileMenuOpen ? 'rounded-2xl sm:rounded-full bg-nature-950/95 backdrop-blur-2xl border-ivory-100/20' : 'rounded-full'
-          } ${
-            scrolled && !mobileMenuOpen
+          className={`relative rounded-full transition-all duration-500 py-2.5 sm:py-3.5 px-5 sm:px-8 border shadow-2xl ${
+            scrolled || mobileMenuOpen
               ? 'bg-nature-950/95 backdrop-blur-2xl border-ivory-100/20 py-2 sm:py-3'
-              : !mobileMenuOpen
-              ? 'bg-nature-950/50 backdrop-blur-md border-ivory-100/10'
-              : ''
+              : 'bg-nature-950/50 backdrop-blur-md border-ivory-100/10'
           }`}
         >
           <div className="flex items-center justify-between gap-3 sm:gap-6">
@@ -60,7 +57,7 @@ export default function Navbar({ onOpenBooking }) {
               </div>
             </a>
 
-            {/* Center Navigation Links */}
+            {/* Center Navigation Links (Desktop) */}
             <nav className="hidden lg:flex items-center gap-8">
               {NAV_ITEMS.map((item) => (
                 <a
@@ -73,7 +70,7 @@ export default function Navbar({ onOpenBooking }) {
               ))}
             </nav>
 
-            {/* Primary CTA Right */}
+            {/* Primary CTA Right (Desktop) */}
             <div className="hidden sm:flex items-center shrink-0">
               <button
                 onClick={onOpenBooking}
@@ -88,53 +85,51 @@ export default function Navbar({ onOpenBooking }) {
             <div className="lg:hidden flex items-center shrink-0">
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2 rounded-full bg-ivory-100/10 text-ivory-100 focus:outline-none"
+                className="p-2 rounded-full bg-ivory-100/10 text-ivory-100 focus:outline-none transition-colors hover:bg-ivory-100/20"
                 aria-label="Toggle Menu"
               >
                 {mobileMenuOpen ? <X className="w-4 h-4 sm:w-5 sm:h-5" /> : <Menu className="w-4 h-4 sm:w-5 sm:h-5" />}
               </button>
             </div>
           </div>
-
-          {/* Mobile Menu Drawer */}
-          <AnimatePresence>
-            {mobileMenuOpen && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.3 }}
-                className="lg:hidden overflow-hidden mt-3 pt-3 border-t border-ivory-100/10"
-              >
-                <div className="flex flex-col gap-2 pb-2">
-                  {NAV_ITEMS.map((item) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="text-xs font-semibold text-ivory-200 hover:text-white uppercase tracking-widest py-2 px-3 rounded-xl hover:bg-ivory-100/5 transition-colors flex items-center justify-between"
-                    >
-                      <span>{item.name}</span>
-                      <ArrowUpRight className="w-3.5 h-3.5 text-warmgray-400" />
-                    </a>
-                  ))}
-                  <div className="pt-2 mt-1 border-t border-ivory-100/10">
-                    <button
-                      onClick={() => {
-                        setMobileMenuOpen(false);
-                        onOpenBooking();
-                      }}
-                      className="w-full flex items-center justify-center gap-2 py-2.5 rounded-full bg-forest text-ivory-100 font-semibold text-xs uppercase tracking-wider shadow-md"
-                    >
-                      <span>Book Adventure</span>
-                      <ArrowUpRight className="w-3.5 h-3.5" />
-                    </button>
-                  </div>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
         </motion.nav>
+
+        {/* Separate Floating Mobile Dropdown Card */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -10, scale: 0.97 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -10, scale: 0.97 }}
+              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+              className="lg:hidden mt-2.5 p-4 rounded-2xl bg-nature-950/95 backdrop-blur-2xl border border-ivory-100/20 shadow-2xl flex flex-col gap-2"
+            >
+              {NAV_ITEMS.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-xs font-semibold text-ivory-200 hover:text-white uppercase tracking-widest py-2.5 px-3 rounded-xl hover:bg-ivory-100/10 transition-colors flex items-center justify-between"
+                >
+                  <span>{item.name}</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 text-warmgray-400" />
+                </a>
+              ))}
+              <div className="pt-2 mt-1 border-t border-ivory-100/10">
+                <button
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    onOpenBooking();
+                  }}
+                  className="w-full flex items-center justify-center gap-2 py-3 rounded-full bg-forest text-ivory-100 font-semibold text-xs uppercase tracking-wider shadow-md cursor-pointer"
+                >
+                  <span>Book Adventure</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </header>
   );
