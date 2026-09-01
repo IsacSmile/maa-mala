@@ -55,7 +55,7 @@ export default function ReelsSection() {
           transition={{ duration: 0.7 }}
           className="flex flex-col items-center text-center mb-10"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-forest-950 border border-forest-500/30 text-forest-300 text-xs font-bold uppercase tracking-widest mb-4 shadow-moss-glow">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/80 border border-white/20 text-white text-xs font-bold uppercase tracking-widest mb-4 shadow-xl">
             <InstagramIcon className="w-3.5 h-3.5 text-gold-400" />
             <span>@maa.mala_ • Editorial Showcase</span>
           </div>
@@ -76,64 +76,58 @@ export default function ReelsSection() {
             </a>.
           </p>
 
-          {/* Controls Bar: View Mode & Follow Link */}
+          {/* Controls Bar: White & Black Trigger Buttons */}
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-            <div className="p-1 rounded-2xl glass-card border border-white/10 flex items-center gap-1">
+            <div className="p-1.5 rounded-full bg-black/90 border border-white/20 shadow-2xl flex items-center gap-1.5 backdrop-blur-xl">
               <button
                 onClick={() => setViewMode('gallery')}
-                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all ${
+                className={`px-5 py-2 rounded-full text-xs sm:text-sm font-extrabold transition-all duration-300 ${
                   viewMode === 'gallery'
-                    ? 'bg-gradient-to-r from-gold-500 to-forest-600 text-cream shadow-md'
-                    : 'text-slate-400 hover:text-cream'
+                    ? 'bg-white text-black shadow-lg scale-105'
+                    : 'text-slate-300 hover:text-white'
                 }`}
               >
                 Media Gallery
               </button>
               <button
                 onClick={() => setViewMode('live')}
-                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-1.5 ${
+                className={`px-5 py-2 rounded-full text-xs sm:text-sm font-extrabold transition-all duration-300 flex items-center gap-1.5 ${
                   viewMode === 'live'
-                    ? 'bg-gradient-to-r from-pink-600 to-purple-600 text-cream shadow-md'
-                    : 'text-slate-400 hover:text-cream'
+                    ? 'bg-white text-black shadow-lg scale-105'
+                    : 'text-slate-300 hover:text-white'
                 }`}
               >
-                <Radio className="w-3.5 h-3.5 text-pink-300 animate-pulse" />
+                <Radio className="w-3.5 h-3.5 text-black animate-pulse" />
                 <span>Realtime Instagram Embed</span>
               </button>
             </div>
 
+            {/* High Contrast White & Black Trigger Button */}
             <a
               href="https://www.instagram.com/maa.mala_/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-gradient-to-r from-purple-600 via-pink-600 to-gold-500 text-cream font-bold text-xs shadow-lg hover:scale-105 transition-all border border-white/20"
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white text-black font-extrabold text-xs shadow-xl hover:bg-slate-200 hover:scale-105 transition-all border border-white/40"
             >
-              <InstagramIcon className="w-4 h-4" />
+              <InstagramIcon className="w-4 h-4 text-black" />
               <span>Follow @maa.mala_ Live</span>
-              <ExternalLink className="w-3.5 h-3.5 opacity-80" />
+              <ExternalLink className="w-3.5 h-3.5 text-black opacity-80" />
             </a>
           </div>
 
-          {/* Refined Category Filter Bar */}
+          {/* White & Black Refined Category Filter Bar */}
           {viewMode === 'gallery' && (
-            <div className="mt-6 flex flex-wrap items-center justify-center gap-2 p-1.5 rounded-2xl glass-card border border-white/10">
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-2 p-1.5 rounded-full bg-black/90 border border-white/20 shadow-2xl backdrop-blur-xl">
               {CATEGORIES.map((cat) => {
                 const active = selectedCategory === cat;
                 return (
                   <button
                     key={cat}
                     onClick={() => setSelectedCategory(cat)}
-                    className={`relative px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 ${
-                      active ? 'text-cream' : 'text-slate-400 hover:text-slate-200'
+                    className={`relative px-4 py-2 rounded-full text-xs sm:text-sm font-extrabold transition-all duration-300 ${
+                      active ? 'bg-white text-black shadow-md scale-105' : 'text-slate-300 hover:text-white'
                     }`}
                   >
-                    {active && (
-                      <motion.div
-                        layoutId="activeEditorialCategory"
-                        className="absolute inset-0 bg-gradient-to-r from-gold-500 to-forest-600 rounded-xl shadow-md -z-10"
-                        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                      />
-                    )}
                     {cat}
                   </button>
                 );
@@ -157,29 +151,29 @@ export default function ReelsSection() {
         ) : (
           /* Custom Editorial Magazine Carousel Layout */
           <div className="relative">
-            {/* Top Navigation Controls */}
+            {/* Top Navigation Controls with White & Black Trigger Buttons */}
             <div className="flex items-center justify-between mb-4 px-2">
-              <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">
+              <span className="text-xs font-extrabold text-slate-300 uppercase tracking-widest">
                 Showing {filteredReels.length} Outdoor Stories
               </span>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-3">
                 <motion.button
-                  whileHover={{ scale: 1.1, backgroundColor: 'rgba(255, 255, 255, 0.2)' }}
-                  whileTap={{ scale: 0.9 }}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.92 }}
                   onClick={handleScrollLeft}
-                  className="w-10 h-10 rounded-full bg-white/10 border border-white/15 flex items-center justify-center text-cream shadow-md transition-colors"
+                  className="w-10 h-10 rounded-full bg-white text-black border border-white flex items-center justify-center font-extrabold shadow-xl hover:bg-slate-200 transition-colors"
                   aria-label="Scroll left"
                 >
-                  <ChevronLeft className="w-5 h-5" />
+                  <ChevronLeft className="w-5 h-5 stroke-[2.5]" />
                 </motion.button>
                 <motion.button
-                  whileHover={{ scale: 1.1, backgroundColor: 'rgba(245, 158, 11, 0.3)' }}
-                  whileTap={{ scale: 0.9 }}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.92 }}
                   onClick={handleScrollRight}
-                  className="w-10 h-10 rounded-full bg-forest-900 border border-forest-500/40 flex items-center justify-center text-cream shadow-moss-glow transition-colors"
+                  className="w-10 h-10 rounded-full bg-white text-black border border-white flex items-center justify-center font-extrabold shadow-xl hover:bg-slate-200 transition-colors"
                   aria-label="Scroll right"
                 >
-                  <ChevronRight className="w-5 h-5" />
+                  <ChevronRight className="w-5 h-5 stroke-[2.5]" />
                 </motion.button>
               </div>
             </div>
@@ -195,7 +189,6 @@ export default function ReelsSection() {
               className="flex gap-6 overflow-x-auto pb-8 pt-2 px-2 no-scrollbar scroll-smooth snap-x snap-mandatory items-end"
             >
               {filteredReels.map((reel, index) => {
-                // Editorial organic alternating aspect ratios & heights
                 const heightAspects = ['aspect-[4/5]', 'aspect-[9/14]', 'aspect-[4/5]', 'aspect-[3/4]', 'aspect-[9/14]'];
                 const cardAspect = heightAspects[index % heightAspects.length];
 
@@ -240,19 +233,19 @@ export default function ReelsSection() {
                         )}
                       </div>
 
-                      <div className="px-2.5 py-1 rounded-full bg-gold-600/90 text-[10px] font-extrabold text-cream uppercase tracking-widest shadow-md">
+                      <div className="px-2.5 py-1 rounded-full bg-white text-black text-[10px] font-black uppercase tracking-widest shadow-md">
                         REEL
                       </div>
                     </div>
 
-                    {/* Center Play Overlay Icon */}
+                    {/* Center Play Overlay Icon (White & Black Trigger Button) */}
                     <div className="relative flex-1 flex items-center justify-center z-10">
                       <motion.div
                         whileHover={{ scale: 1.15 }}
                         whileTap={{ scale: 0.95 }}
-                        className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-md border border-white/40 flex items-center justify-center text-cream shadow-xl group-hover:bg-gradient-to-tr group-hover:from-gold-500 group-hover:to-forest-600 transition-all duration-300"
+                        className="w-14 h-14 rounded-full bg-white text-black border border-white flex items-center justify-center shadow-2xl group-hover:bg-slate-200 transition-all duration-300"
                       >
-                        <Play className="w-6 h-6 fill-cream ml-0.5" />
+                        <Play className="w-6 h-6 fill-black text-black ml-0.5" />
                       </motion.div>
                     </div>
 
@@ -292,7 +285,7 @@ export default function ReelsSection() {
                 <div
                   key={i}
                   className={`h-2 rounded-full transition-all ${
-                    i === activeIndex ? 'w-6 bg-gold-400' : 'w-2 bg-white/20'
+                    i === activeIndex ? 'w-6 bg-white' : 'w-2 bg-white/20'
                   }`}
                 />
               ))}
@@ -342,7 +335,7 @@ export default function ReelsSection() {
 
                   <button
                     onClick={() => setActiveReelModal(null)}
-                    className="p-2 rounded-full bg-white/10 text-cream hover:bg-white/20 transition-colors"
+                    className="p-2 rounded-full bg-white text-black hover:bg-slate-200 transition-colors font-bold"
                   >
                     <X className="w-5 h-5" />
                   </button>
@@ -362,7 +355,7 @@ export default function ReelsSection() {
 
                   <button
                     onClick={() => setIsMuted(!isMuted)}
-                    className="absolute top-4 right-4 p-2.5 rounded-full bg-charcoal-950/80 text-cream backdrop-blur-md border border-white/20 hover:scale-110 transition-all"
+                    className="absolute top-4 right-4 p-2.5 rounded-full bg-white text-black hover:bg-slate-200 backdrop-blur-md border border-white shadow-lg transition-all"
                   >
                     {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
                   </button>
@@ -390,11 +383,11 @@ export default function ReelsSection() {
                       href={activeReelModal.instagramUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-gold-500 to-forest-600 text-cream text-xs font-bold hover:shadow-lg transition-all"
+                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white text-black text-xs font-extrabold hover:bg-slate-200 transition-all shadow-md"
                     >
-                      <InstagramIcon className="w-3.5 h-3.5" />
+                      <InstagramIcon className="w-3.5 h-3.5 text-black" />
                       <span>View on @maa.mala_</span>
-                      <ExternalLink className="w-3 h-3 opacity-80" />
+                      <ExternalLink className="w-3 h-3 text-black opacity-80" />
                     </a>
                   </div>
                 </div>
