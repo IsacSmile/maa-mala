@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, PhoneCall, CheckCircle2, AlertCircle } from 'lucide-react';
+import { X, PhoneCall, CheckCircle2, AlertCircle, Plus, Minus } from 'lucide-react';
 
 const WHATSAPP_NUMBER = '919400921124';
 
@@ -42,9 +42,20 @@ export default function BookingModal({ isOpen, onClose }) {
       [name]: name.includes('Count') || name === 'totalGuests' ? Math.max(0, parseInt(value, 10) || 0) : value,
     }));
 
-    // Clear specific field error as user types
-    if (errors[name]) {
-      setErrors((prev) => ({ ...prev, [name]: null }));
+    if (errors[name] || errors.mismatch) {
+      setErrors((prev) => ({ ...prev, [name]: null, mismatch: null }));
+    }
+  };
+
+  const handleStep = (field, delta, min = 0) => {
+    setFormData((prev) => {
+      const currentVal = prev[field] || 0;
+      const newVal = Math.max(min, currentVal + delta);
+      return { ...prev, [field]: newVal };
+    });
+
+    if (errors[field] || errors.mismatch) {
+      setErrors((prev) => ({ ...prev, [field]: null, mismatch: null }));
     }
   };
 
@@ -225,23 +236,41 @@ Please share the booking details and availability.`;
                   )}
                 </div>
 
-                {/* 3. Guest Counts Grid (Total Guests, Male, Female) */}
+                {/* 3. Guest Counts Grid with Custom Sleek Steppers */}
                 <div className="grid grid-cols-3 gap-3 pt-1">
                   {/* Total Guests */}
                   <div>
                     <label htmlFor="totalGuests" className="block text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-warmgray-400 mb-1.5">
                       Total Guests <span className="text-gold">*</span>
                     </label>
-                    <input
-                      type="number"
-                      id="totalGuests"
-                      name="totalGuests"
-                      min="1"
-                      inputMode="numeric"
-                      value={formData.totalGuests}
-                      onChange={handleChange}
-                      className="w-full px-3 py-2.5 rounded-lg bg-nature-900 border border-ivory-100/15 text-xs sm:text-sm text-center text-ivory-100 font-bold focus:outline-none focus:ring-1 focus:ring-gold"
-                    />
+                    <div className="flex items-center rounded-lg bg-nature-900 border border-ivory-100/15 p-1">
+                      <button
+                        type="button"
+                        onClick={() => handleStep('totalGuests', -1, 1)}
+                        className="w-7 h-7 rounded bg-nature-950/60 hover:bg-nature-950 text-ivory-100 flex items-center justify-center transition-colors shrink-0"
+                        aria-label="Decrease total guests"
+                      >
+                        <Minus className="w-3 h-3" />
+                      </button>
+                      <input
+                        type="number"
+                        id="totalGuests"
+                        name="totalGuests"
+                        min="1"
+                        inputMode="numeric"
+                        value={formData.totalGuests}
+                        onChange={handleChange}
+                        className="w-full text-center bg-transparent text-xs sm:text-sm text-ivory-100 font-bold focus:outline-none p-0"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => handleStep('totalGuests', 1, 1)}
+                        className="w-7 h-7 rounded bg-nature-950/60 hover:bg-nature-950 text-ivory-100 flex items-center justify-center transition-colors shrink-0"
+                        aria-label="Increase total guests"
+                      >
+                        <Plus className="w-3 h-3" />
+                      </button>
+                    </div>
                   </div>
 
                   {/* Male */}
@@ -249,16 +278,34 @@ Please share the booking details and availability.`;
                     <label htmlFor="maleCount" className="block text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-warmgray-400 mb-1.5">
                       Male <span className="text-gold">*</span>
                     </label>
-                    <input
-                      type="number"
-                      id="maleCount"
-                      name="maleCount"
-                      min="0"
-                      inputMode="numeric"
-                      value={formData.maleCount}
-                      onChange={handleChange}
-                      className="w-full px-3 py-2.5 rounded-lg bg-nature-900 border border-ivory-100/15 text-xs sm:text-sm text-center text-ivory-100 font-bold focus:outline-none focus:ring-1 focus:ring-gold"
-                    />
+                    <div className="flex items-center rounded-lg bg-nature-900 border border-ivory-100/15 p-1">
+                      <button
+                        type="button"
+                        onClick={() => handleStep('maleCount', -1, 0)}
+                        className="w-7 h-7 rounded bg-nature-950/60 hover:bg-nature-950 text-ivory-100 flex items-center justify-center transition-colors shrink-0"
+                        aria-label="Decrease male count"
+                      >
+                        <Minus className="w-3 h-3" />
+                      </button>
+                      <input
+                        type="number"
+                        id="maleCount"
+                        name="maleCount"
+                        min="0"
+                        inputMode="numeric"
+                        value={formData.maleCount}
+                        onChange={handleChange}
+                        className="w-full text-center bg-transparent text-xs sm:text-sm text-ivory-100 font-bold focus:outline-none p-0"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => handleStep('maleCount', 1, 0)}
+                        className="w-7 h-7 rounded bg-nature-950/60 hover:bg-nature-950 text-ivory-100 flex items-center justify-center transition-colors shrink-0"
+                        aria-label="Increase male count"
+                      >
+                        <Plus className="w-3 h-3" />
+                      </button>
+                    </div>
                   </div>
 
                   {/* Female */}
@@ -266,16 +313,34 @@ Please share the booking details and availability.`;
                     <label htmlFor="femaleCount" className="block text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-warmgray-400 mb-1.5">
                       Female <span className="text-gold">*</span>
                     </label>
-                    <input
-                      type="number"
-                      id="femaleCount"
-                      name="femaleCount"
-                      min="0"
-                      inputMode="numeric"
-                      value={formData.femaleCount}
-                      onChange={handleChange}
-                      className="w-full px-3 py-2.5 rounded-lg bg-nature-900 border border-ivory-100/15 text-xs sm:text-sm text-center text-ivory-100 font-bold focus:outline-none focus:ring-1 focus:ring-gold"
-                    />
+                    <div className="flex items-center rounded-lg bg-nature-900 border border-ivory-100/15 p-1">
+                      <button
+                        type="button"
+                        onClick={() => handleStep('femaleCount', -1, 0)}
+                        className="w-7 h-7 rounded bg-nature-950/60 hover:bg-nature-950 text-ivory-100 flex items-center justify-center transition-colors shrink-0"
+                        aria-label="Decrease female count"
+                      >
+                        <Minus className="w-3 h-3" />
+                      </button>
+                      <input
+                        type="number"
+                        id="femaleCount"
+                        name="femaleCount"
+                        min="0"
+                        inputMode="numeric"
+                        value={formData.femaleCount}
+                        onChange={handleChange}
+                        className="w-full text-center bg-transparent text-xs sm:text-sm text-ivory-100 font-bold focus:outline-none p-0"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => handleStep('femaleCount', 1, 0)}
+                        className="w-7 h-7 rounded bg-nature-950/60 hover:bg-nature-950 text-ivory-100 flex items-center justify-center transition-colors shrink-0"
+                        aria-label="Increase female count"
+                      >
+                        <Plus className="w-3 h-3" />
+                      </button>
+                    </div>
                   </div>
                 </div>
 
