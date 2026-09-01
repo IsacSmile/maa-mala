@@ -205,7 +205,7 @@ Please share the booking details and availability.`;
               <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                 {/* 1. Styled Custom Custom Adventure Package Dropdown */}
                 <div className="relative" ref={dropdownRef}>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-warmgray-400 mb-1.5 flex items-center gap-1.5">
+                  <label className="text-xs font-semibold uppercase tracking-wider text-warmgray-400 mb-1.5 flex items-center gap-1.5">
                     <Compass className="w-3.5 h-3.5 text-gold shrink-0" />
                     <span>Adventure Package</span> <span className="text-gold">*</span>
                   </label>
