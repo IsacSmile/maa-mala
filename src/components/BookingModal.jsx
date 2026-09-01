@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, PhoneCall, CheckCircle2, AlertCircle, Plus, Minus } from 'lucide-react';
+import { X, PhoneCall, AlertCircle, CheckCircle2, Plus, Minus } from 'lucide-react';
 
 const WHATSAPP_NUMBER = '919400921124';
 
@@ -8,7 +8,6 @@ export default function BookingModal({ isOpen, onClose }) {
   const [formData, setFormData] = useState({
     fullName: '',
     mobile: '',
-    totalGuests: 1,
     maleCount: 1,
     femaleCount: 0,
   });
@@ -16,15 +15,11 @@ export default function BookingModal({ isOpen, onClose }) {
   const [errors, setErrors] = useState({});
   const [showToast, setShowToast] = useState(false);
 
-  // Reset errors when modal opens/closes
-  useEffect(() => {
-    if (isOpen) {
-      setErrors({});
-      setShowToast(false);
-    }
-  }, [isOpen]);
+  // Computed total guests count
+  const totalGuests = (Number(formData.maleCount) || 0) + (Number(formData.femaleCount) || 0);
+  const totalPrice = totalGuests * 1799;
 
-  // Close modal on Escape key press
+  // Handle ESC key press to close modal
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape' && isOpen) {
@@ -39,11 +34,11 @@ export default function BookingModal({ isOpen, onClose }) {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: name.includes('Count') || name === 'totalGuests' ? Math.max(0, parseInt(value, 10) || 0) : value,
+      [name]: name.includes('Count') ? Math.max(0, parseInt(value, 10) || 0) : value,
     }));
 
-    if (errors[name] || errors.mismatch) {
-      setErrors((prev) => ({ ...prev, [name]: null, mismatch: null }));
+    if (errors[name] || errors.guests) {
+      setErrors((prev) => ({ ...prev, [name]: null, guests: null }));
     }
   };
 
@@ -54,8 +49,8 @@ export default function BookingModal({ isOpen, onClose }) {
       return { ...prev, [field]: newVal };
     });
 
-    if (errors[field] || errors.mismatch) {
-      setErrors((prev) => ({ ...prev, [field]: null, mismatch: null }));
+    if (errors[field] || errors.guests) {
+      setErrors((prev) => ({ ...prev, [field]: null, guests: null }));
     }
   };
 
@@ -78,21 +73,9 @@ export default function BookingModal({ isOpen, onClose }) {
       newErrors.mobile = 'Please enter a valid 10-digit Indian mobile number';
     }
 
-    // 3. Guest counts validation
-    const total = Number(formData.totalGuests);
-    const male = Number(formData.maleCount);
-    const female = Number(formData.femaleCount);
-
-    if (total < 1) {
-      newErrors.totalGuests = 'Total Guests must be at least 1';
-    }
-
-    if (male < 0) newErrors.maleCount = 'Male count cannot be negative';
-    if (female < 0) newErrors.femaleCount = 'Female count cannot be negative';
-
-    // Critical Rule: Male + Female count MUST equal Total Guests
-    if (male + female !== total) {
-      newErrors.mismatch = `Male (${male}) + Female (${female}) count must equal Total Guests (${total}).`;
+    // 3. Guest count validation (Must select at least 1 guest)
+    if (totalGuests < 1) {
+      newErrors.guests = 'Please select at least 1 guest (Male or Female)';
     }
 
     setErrors(newErrors);
@@ -104,17 +87,14 @@ export default function BookingModal({ isOpen, onClose }) {
 
     if (!validate()) return;
 
-    const numGuests = Math.max(1, parseInt(formData.totalGuests, 10) || 1);
-    const calculatedTotal = (numGuests * 1799).toLocaleString('en-IN');
+    const calculatedTotal = totalPrice.toLocaleString('en-IN');
 
     // Construct pre-filled WhatsApp message
     const message = `Hello, I would like to book Strangers Camp @ Kakkadampoyil.
 
 Name: ${formData.fullName.trim()}
 Mobile: ${formData.mobile.trim()}
-Total Guests: ${formData.totalGuests}
-Male: ${formData.maleCount}
-Female: ${formData.femaleCount}
+Total Guests: ${totalGuests} (Male: ${formData.maleCount}, Female: ${formData.femaleCount})
 Estimated Price: ₹${calculatedTotal} (All-Inclusive)
 
 Please share the booking details and availability.`;
@@ -152,45 +132,46 @@ Please share the booking details and availability.`;
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="relative w-full max-w-lg rounded-2xl bg-nature-950 border border-ivory-100/15 shadow-2xl p-6 sm:p-8 z-10 text-ivory-100 my-auto overflow-hidden"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="modal-title"
+            className="relative w-full max-w-lg bg-nature-950 border border-ivory-100/15 rounded-2xl p-6 sm:p-8 shadow-2xl z-10 text-left my-auto"
           >
-            {/* Modal Header */}
-            <div className="flex items-start justify-between pb-5 border-b border-ivory-100/10 mb-6">
+            {/* Header Close Trigger */}
+            <div className="flex items-center justify-between border-b border-ivory-100/10 pb-4 mb-6">
               <div>
-                <span className="text-[10px] font-semibold tracking-[0.2em] uppercase text-gold block mb-1">
+                <span className="text-[10px] font-semibold tracking-widest uppercase text-gold block">
                   STRANGERS CAMP · KAKKADAMPOYIL
                 </span>
-                <h3 id="modal-title" className="text-xl sm:text-2xl font-serif font-bold text-ivory-100">
+                <h2 className="text-xl sm:text-2xl font-serif font-bold text-ivory-100 mt-0.5">
                   Book Your Adventure
-                </h3>
+                </h2>
               </div>
-
               <button
                 onClick={onClose}
-                className="w-9 h-9 rounded-full bg-ivory-100/10 text-ivory-100 hover:bg-ivory-100/20 flex items-center justify-center transition-colors focus:outline-none"
-                aria-label="Close booking modal"
+                className="w-8 h-8 rounded-full bg-nature-900 border border-ivory-100/10 text-warmgray-400 hover:text-ivory-100 hover:bg-nature-850 flex items-center justify-center transition-colors cursor-pointer"
+                aria-label="Close modal"
               >
                 <X className="w-4 h-4" />
               </button>
             </div>
 
-            {/* Success Toast Overlay */}
+            {/* Success Toast Feedback */}
             {showToast ? (
-              <div className="py-12 flex flex-col items-center justify-center text-center gap-3">
-                <CheckCircle2 className="w-12 h-12 text-gold animate-bounce" />
-                <h4 className="text-lg font-serif font-bold text-ivory-100">
-                  Booking Details Prepared!
-                </h4>
-                <p className="text-xs text-warmgray-400 max-w-xs font-sans">
-                  Redirecting to WhatsApp to confirm your availability with MAA MALA™.
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="py-12 flex flex-col items-center justify-center text-center gap-3"
+              >
+                <div className="w-14 h-14 rounded-full bg-forest/20 border border-forest text-gold flex items-center justify-center">
+                  <CheckCircle2 className="w-7 h-7 text-gold" />
+                </div>
+                <h3 className="text-xl font-serif font-bold text-ivory-100">
+                  Redirecting to WhatsApp...
+                </h3>
+                <p className="text-xs text-warmgray-400 max-w-xs">
+                  Your booking details have been prepared. Please send the message in WhatsApp to confirm.
                 </p>
-              </div>
+              </motion.div>
             ) : (
-              /* Booking Form */
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                 {/* 1. Full Name */}
                 <div>
                   <label htmlFor="fullName" className="block text-xs font-semibold uppercase tracking-wider text-warmgray-400 mb-1.5">
@@ -240,133 +221,87 @@ Please share the booking details and availability.`;
                   )}
                 </div>
 
-                {/* 3. Guest Counts Grid with Custom Sleek Steppers */}
-                <div className="grid grid-cols-3 gap-3 pt-1">
-                  {/* Total Guests */}
-                  <div>
-                    <label htmlFor="totalGuests" className="block text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-warmgray-400 mb-1.5">
-                      Total Guests <span className="text-gold">*</span>
-                    </label>
-                    <div className="flex items-center rounded-lg bg-nature-900 border border-ivory-100/15 p-1">
-                      <button
-                        type="button"
-                        onClick={() => handleStep('totalGuests', -1, 1)}
-                        className="w-7 h-7 rounded bg-nature-950/60 hover:bg-nature-950 text-ivory-100 flex items-center justify-center transition-colors shrink-0"
-                        aria-label="Decrease total guests"
-                      >
-                        <Minus className="w-3 h-3" />
-                      </button>
-                      <input
-                        type="number"
-                        id="totalGuests"
-                        name="totalGuests"
-                        min="1"
-                        inputMode="numeric"
-                        value={formData.totalGuests}
-                        onChange={handleChange}
-                        className="w-full text-center bg-transparent text-xs sm:text-sm text-ivory-100 font-bold focus:outline-none p-0"
-                      />
-                      <button
-                        type="button"
-                        onClick={() => handleStep('totalGuests', 1, 1)}
-                        className="w-7 h-7 rounded bg-nature-950/60 hover:bg-nature-950 text-ivory-100 flex items-center justify-center transition-colors shrink-0"
-                        aria-label="Increase total guests"
-                      >
-                        <Plus className="w-3 h-3" />
-                      </button>
+                {/* 3. Gender Steppers Grid (Male & Female) */}
+                <div>
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-warmgray-400 mb-1.5">
+                    Select Guests <span className="text-gold">*</span>
+                  </label>
+                  <div className="grid grid-cols-2 gap-4">
+                    {/* Male Stepper */}
+                    <div className="p-3 rounded-lg bg-nature-900 border border-ivory-100/15 flex items-center justify-between gap-2">
+                      <span className="text-xs font-semibold uppercase tracking-wider text-ivory-200">
+                        Male
+                      </span>
+                      <div className="flex items-center gap-2">
+                        <button
+                          type="button"
+                          onClick={() => handleStep('maleCount', -1, 0)}
+                          className="w-7 h-7 rounded bg-nature-950/60 hover:bg-nature-950 text-ivory-100 flex items-center justify-center transition-colors shrink-0 cursor-pointer"
+                          aria-label="Decrease male count"
+                        >
+                          <Minus className="w-3 h-3" />
+                        </button>
+                        <span className="w-5 text-center text-sm font-bold text-ivory-100">
+                          {formData.maleCount}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => handleStep('maleCount', 1, 0)}
+                          className="w-7 h-7 rounded bg-nature-950/60 hover:bg-nature-950 text-ivory-100 flex items-center justify-center transition-colors shrink-0 cursor-pointer"
+                          aria-label="Increase male count"
+                        >
+                          <Plus className="w-3 h-3" />
+                        </button>
+                      </div>
                     </div>
-                  </div>
 
-                  {/* Male */}
-                  <div>
-                    <label htmlFor="maleCount" className="block text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-warmgray-400 mb-1.5">
-                      Male <span className="text-gold">*</span>
-                    </label>
-                    <div className="flex items-center rounded-lg bg-nature-900 border border-ivory-100/15 p-1">
-                      <button
-                        type="button"
-                        onClick={() => handleStep('maleCount', -1, 0)}
-                        className="w-7 h-7 rounded bg-nature-950/60 hover:bg-nature-950 text-ivory-100 flex items-center justify-center transition-colors shrink-0"
-                        aria-label="Decrease male count"
-                      >
-                        <Minus className="w-3 h-3" />
-                      </button>
-                      <input
-                        type="number"
-                        id="maleCount"
-                        name="maleCount"
-                        min="0"
-                        inputMode="numeric"
-                        value={formData.maleCount}
-                        onChange={handleChange}
-                        className="w-full text-center bg-transparent text-xs sm:text-sm text-ivory-100 font-bold focus:outline-none p-0"
-                      />
-                      <button
-                        type="button"
-                        onClick={() => handleStep('maleCount', 1, 0)}
-                        className="w-7 h-7 rounded bg-nature-950/60 hover:bg-nature-950 text-ivory-100 flex items-center justify-center transition-colors shrink-0"
-                        aria-label="Increase male count"
-                      >
-                        <Plus className="w-3 h-3" />
-                      </button>
+                    {/* Female Stepper */}
+                    <div className="p-3 rounded-lg bg-nature-900 border border-ivory-100/15 flex items-center justify-between gap-2">
+                      <span className="text-xs font-semibold uppercase tracking-wider text-ivory-200">
+                        Female
+                      </span>
+                      <div className="flex items-center gap-2">
+                        <button
+                          type="button"
+                          onClick={() => handleStep('femaleCount', -1, 0)}
+                          className="w-7 h-7 rounded bg-nature-950/60 hover:bg-nature-950 text-ivory-100 flex items-center justify-center transition-colors shrink-0 cursor-pointer"
+                          aria-label="Decrease female count"
+                        >
+                          <Minus className="w-3 h-3" />
+                        </button>
+                        <span className="w-5 text-center text-sm font-bold text-ivory-100">
+                          {formData.femaleCount}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => handleStep('femaleCount', 1, 0)}
+                          className="w-7 h-7 rounded bg-nature-950/60 hover:bg-nature-950 text-ivory-100 flex items-center justify-center transition-colors shrink-0 cursor-pointer"
+                          aria-label="Increase female count"
+                        >
+                          <Plus className="w-3 h-3" />
+                        </button>
+                      </div>
                     </div>
                   </div>
-
-                  {/* Female */}
-                  <div>
-                    <label htmlFor="femaleCount" className="block text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-warmgray-400 mb-1.5">
-                      Female <span className="text-gold">*</span>
-                    </label>
-                    <div className="flex items-center rounded-lg bg-nature-900 border border-ivory-100/15 p-1">
-                      <button
-                        type="button"
-                        onClick={() => handleStep('femaleCount', -1, 0)}
-                        className="w-7 h-7 rounded bg-nature-950/60 hover:bg-nature-950 text-ivory-100 flex items-center justify-center transition-colors shrink-0"
-                        aria-label="Decrease female count"
-                      >
-                        <Minus className="w-3 h-3" />
-                      </button>
-                      <input
-                        type="number"
-                        id="femaleCount"
-                        name="femaleCount"
-                        min="0"
-                        inputMode="numeric"
-                        value={formData.femaleCount}
-                        onChange={handleChange}
-                        className="w-full text-center bg-transparent text-xs sm:text-sm text-ivory-100 font-bold focus:outline-none p-0"
-                      />
-                      <button
-                        type="button"
-                        onClick={() => handleStep('femaleCount', 1, 0)}
-                        className="w-7 h-7 rounded bg-nature-950/60 hover:bg-nature-950 text-ivory-100 flex items-center justify-center transition-colors shrink-0"
-                        aria-label="Increase female count"
-                      >
-                        <Plus className="w-3 h-3" />
-                      </button>
-                    </div>
-                  </div>
+                  {errors.guests && (
+                    <span className="text-[11px] text-red-400 mt-1.5 flex items-center gap-1">
+                      <AlertCircle className="w-3 h-3 shrink-0" />
+                      <span>{errors.guests}</span>
+                    </span>
+                  )}
                 </div>
-
-                {/* Validation Mismatch Error Alert */}
-                {errors.mismatch && (
-                  <div className="p-3 rounded-lg bg-red-950/40 border border-red-500/30 text-red-300 text-xs flex items-start gap-2">
-                    <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
-                    <span>{errors.mismatch}</span>
-                  </div>
-                )}
 
                 {/* Dynamic Pricing Summary */}
                 <div className="pt-3 pb-1 flex items-center justify-between text-xs text-warmgray-400 border-t border-ivory-100/10">
                   <div className="flex flex-col text-left">
                     <span className="font-semibold text-ivory-200">Total Package Price</span>
                     <span className="text-[10px] text-warmgray-400 font-sans mt-0.5">
-                      ₹1,799 × {Math.max(1, parseInt(formData.totalGuests, 10) || 1)} guest{(parseInt(formData.totalGuests, 10) || 1) > 1 ? 's' : ''}
+                      ₹1,799 × {totalGuests} guest{totalGuests > 1 ? 's' : ''}
                     </span>
                   </div>
                   <div className="text-right">
                     <span className="font-serif font-bold text-gold text-base sm:text-lg block">
-                      ₹{(Math.max(1, parseInt(formData.totalGuests, 10) || 1) * 1799).toLocaleString('en-IN')}
+                      ₹{totalPrice.toLocaleString('en-IN')}
                     </span>
                     <span className="text-[9px] text-warmgray-400 uppercase tracking-widest font-sans">
                       All-Inclusive
