@@ -16,112 +16,106 @@ export default function Navbar({ onOpenBooking }) {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
+      setScrolled(window.scrollY > 30);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-8 py-3.5 sm:py-5 pointer-events-none transition-all duration-500">
-      <div className="max-w-6xl mx-auto pointer-events-auto relative">
-        {/* Main Floating Navbar Pill */}
-        <motion.nav
-          initial={{ y: -40, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className={`relative rounded-full transition-all duration-500 py-2.5 sm:py-3.5 px-5 sm:px-8 border shadow-2xl ${
-            scrolled || mobileMenuOpen
-              ? 'bg-nature-950/95 backdrop-blur-2xl border-ivory-100/20 py-2 sm:py-3'
-              : 'bg-nature-950/50 backdrop-blur-md border-ivory-100/10'
-          }`}
-        >
-          <div className="flex items-center justify-between gap-3 sm:gap-6">
-            {/* Brand Logo Left */}
-            <a href="#home" className="flex items-center gap-2.5 sm:gap-3 group shrink-0">
-              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden border border-ivory-100/20 p-0.5 bg-nature-900 shrink-0 shadow-md">
-                <img
-                  src="/images/logo.png"
-                  alt="MAA MALA™ Logo"
-                  className="w-full h-full object-cover rounded-full"
-                />
-              </div>
-
-              <div className="flex flex-col text-left">
-                <span className="font-extrabold text-xs sm:text-sm tracking-tight text-ivory-100 leading-none">
-                  MAA MALA<span className="text-gold">™</span>
-                </span>
-                <span className="text-[7.5px] sm:text-[8.5px] text-gold tracking-[0.16em] font-semibold uppercase mt-0.5 whitespace-nowrap">
-                  Trails • Peace • Stories
-                </span>
-              </div>
-            </a>
-
-            {/* Center Navigation Links (Desktop) */}
-            <nav className="hidden lg:flex items-center gap-8">
-              {NAV_ITEMS.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="text-[11px] font-semibold text-warmgray-400 hover:text-ivory-100 transition-colors tracking-[0.15em] uppercase"
-                >
-                  {item.name}
-                </a>
-              ))}
-            </nav>
-
-            {/* Primary CTA Right (Desktop) */}
-            <div className="hidden sm:flex items-center shrink-0">
-              <button
-                onClick={onOpenBooking}
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-forest hover:bg-forest-hover text-ivory-100 font-semibold text-xs tracking-wider uppercase shadow-lg transition-all border border-white/10 whitespace-nowrap cursor-pointer"
-              >
-                <span>Book Adventure</span>
-                <ArrowUpRight className="w-3.5 h-3.5 text-ivory-200 shrink-0" />
-              </button>
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled
+          ? 'bg-nature-950/90 backdrop-blur-md border-b border-ivory-100/10 py-3.5 shadow-xl'
+          : 'bg-transparent py-5 sm:py-6'
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-6 sm:px-10">
+        <div className="flex items-center justify-between gap-6">
+          {/* Brand Logo Left */}
+          <a href="#home" className="flex items-center gap-3 group shrink-0">
+            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full overflow-hidden border border-ivory-100/20 p-0.5 bg-nature-900 shrink-0">
+              <img
+                src="/images/logo.png"
+                alt="MAA MALA™ Logo"
+                className="w-full h-full object-cover rounded-full"
+              />
             </div>
 
-            {/* Mobile Menu Trigger */}
-            <div className="lg:hidden flex items-center shrink-0">
-              <button
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2 rounded-full bg-ivory-100/10 text-ivory-100 focus:outline-none transition-colors hover:bg-ivory-100/20"
-                aria-label="Toggle Menu"
-              >
-                {mobileMenuOpen ? <X className="w-4 h-4 sm:w-5 sm:h-5" /> : <Menu className="w-4 h-4 sm:w-5 sm:h-5" />}
-              </button>
+            <div className="flex flex-col text-left">
+              <span className="font-extrabold text-sm tracking-tight text-ivory-100 leading-none">
+                MAA MALA<span className="text-gold">™</span>
+              </span>
+              <span className="text-[8px] text-gold tracking-[0.18em] font-semibold uppercase mt-0.5 whitespace-nowrap">
+                Trails • Peace • Stories
+              </span>
             </div>
+          </a>
+
+          {/* Center Navigation Links (Desktop) */}
+          <nav className="hidden lg:flex items-center gap-8">
+            {NAV_ITEMS.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                className="text-[11px] font-semibold text-warmgray-400 hover:text-ivory-100 transition-colors tracking-[0.18em] uppercase"
+              >
+                {item.name}
+              </a>
+            ))}
+          </nav>
+
+          {/* Primary CTA Right (Desktop) */}
+          <div className="hidden sm:flex items-center shrink-0">
+            <button
+              onClick={onOpenBooking}
+              className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-lg bg-forest hover:bg-forest-hover text-ivory-100 font-semibold text-xs tracking-wider uppercase transition-all border border-white/10 cursor-pointer shadow-md"
+            >
+              <span>Book Adventure</span>
+              <ArrowUpRight className="w-3.5 h-3.5 text-ivory-200 shrink-0" />
+            </button>
           </div>
-        </motion.nav>
 
-        {/* Separate Floating Mobile Dropdown Card */}
+          {/* Mobile Menu Trigger */}
+          <div className="lg:hidden flex items-center shrink-0">
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="p-2 text-ivory-100 focus:outline-none transition-colors"
+              aria-label="Toggle Menu"
+            >
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Dropdown Drawer */}
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
-              initial={{ opacity: 0, y: -10, scale: 0.97 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -10, scale: 0.97 }}
-              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-              className="lg:hidden mt-2.5 p-4 rounded-2xl bg-nature-950/95 backdrop-blur-2xl border border-ivory-100/20 shadow-2xl flex flex-col gap-2"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.25 }}
+              className="lg:hidden mt-4 pt-4 pb-3 border-t border-ivory-100/10 bg-nature-950/95 rounded-xl p-4 shadow-2xl flex flex-col gap-2"
             >
               {NAV_ITEMS.map((item) => (
                 <a
                   key={item.name}
                   href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-xs font-semibold text-ivory-200 hover:text-white uppercase tracking-widest py-2.5 px-3 rounded-xl hover:bg-ivory-100/10 transition-colors flex items-center justify-between"
+                  className="text-xs font-semibold text-ivory-200 hover:text-white uppercase tracking-widest py-2.5 px-3 rounded-lg hover:bg-ivory-100/5 transition-colors flex items-center justify-between"
                 >
                   <span>{item.name}</span>
                   <ArrowUpRight className="w-3.5 h-3.5 text-warmgray-400" />
                 </a>
               ))}
-              <div className="pt-2 mt-1 border-t border-ivory-100/10">
+              <div className="pt-3 mt-1 border-t border-ivory-100/10">
                 <button
                   onClick={() => {
                     setMobileMenuOpen(false);
                     onOpenBooking();
                   }}
-                  className="w-full flex items-center justify-center gap-2 py-3 rounded-full bg-forest text-ivory-100 font-semibold text-xs uppercase tracking-wider shadow-md cursor-pointer"
+                  className="w-full flex items-center justify-center gap-2 py-3 rounded-lg bg-forest text-ivory-100 font-semibold text-xs uppercase tracking-wider shadow-md cursor-pointer"
                 >
                   <span>Book Adventure</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />

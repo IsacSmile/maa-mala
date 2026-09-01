@@ -4,33 +4,33 @@ import { PhoneCall, ArrowRight, ArrowDown } from 'lucide-react';
 
 export default function Hero({ onOpenBooking }) {
   return (
-    <section id="home" className="relative h-[99vh] min-h-[99vh] flex items-center justify-center text-center text-ivory-100 overflow-hidden pt-28 pb-16">
-      {/* Full-Viewport Cinematic Background Image */}
+    <section id="home" className="relative h-[99vh] min-h-[99vh] flex items-center justify-center text-center text-ivory-100 overflow-hidden pt-24 pb-16">
+      {/* Full-Viewport Camping Photography */}
       <div className="absolute inset-0 z-0">
         <img
           src="/images/camping1.png"
-          alt="MAA MALA Strangers Camp Kakkadampoyil Atmosphere"
-          className="w-full h-full object-cover object-center scale-105 filter contrast-[1.05]"
+          alt="MAA MALA Strangers Camp Atmosphere"
+          className="w-full h-full object-cover object-center filter contrast-[1.03]"
         />
-        {/* Subtle Gradient Overlay for Typography Contrast */}
-        <div className="absolute inset-0 bg-gradient-to-t from-nature-950 via-nature-950/60 to-nature-950/40" />
+        {/* Light, Balanced Overlay allowing natural photography to shine */}
+        <div className="absolute inset-0 bg-gradient-to-t from-nature-950 via-nature-950/45 to-nature-950/25" />
       </div>
 
       {/* Hero Content Container */}
       <div className="relative z-10 max-w-4xl mx-auto px-6 sm:px-10 flex flex-col items-center my-auto">
-        {/* Eyebrow */}
+        {/* Simple Label (No Pill, No Box) */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
-          className="mb-5"
+          className="mb-3"
         >
-          <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.25em] text-gold border border-gold/30 px-4 py-1.5 rounded-full bg-nature-950/50 backdrop-blur-sm shadow-md">
+          <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-gold">
             STRANGERS CAMP · KAKKADAMPOYIL
           </span>
         </motion.div>
 
-        {/* Large Editorial Headline */}
+        {/* Editorial Headline */}
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -41,18 +41,18 @@ export default function Hero({ onOpenBooking }) {
           <span className="italic font-normal text-gold">@ Kakkadampoyil</span>
         </motion.h1>
 
-        {/* Malayalam & English Supporting Description */}
+        {/* Malayalam Slogan & 1-2 Line Supporting Description */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2, ease: 'easeOut' }}
-          className="mt-6 flex flex-col items-center gap-2.5 max-w-2xl"
+          className="mt-5 flex flex-col items-center gap-2 max-w-2xl"
         >
           <p className="text-xl sm:text-2xl font-serif italic text-ivory-200">
             "പാട്ടും കഥകളുമായി കക്കാടംപൊയിലിൽ കൂടിയാലോ?"
           </p>
-          <p className="text-xs sm:text-sm text-warmgray-400 leading-relaxed font-sans max-w-xl">
-            An exclusive 2-day outdoor getaway in the misty highlands of Kakkadampoyil. Tent stays, offroad jeep safari, campfire jam & stream hiking.
+          <p className="text-xs sm:text-sm text-warmgray-400 leading-relaxed font-sans max-w-lg">
+            An intimate two-day escape into the misty highlands of Kakkadampoyil — tent stays, jeep trails, campfire nights and stream hikes.
           </p>
         </motion.div>
 
@@ -83,27 +83,25 @@ export default function Hero({ onOpenBooking }) {
         </motion.div>
       </div>
 
-      {/* Experience Indicator (Bottom-Left) */}
-      <div className="absolute bottom-6 left-6 sm:left-10 z-10 hidden sm:flex items-center gap-2 text-[10px] font-semibold tracking-widest uppercase text-warmgray-400 border border-ivory-100/10 px-3.5 py-1.5 rounded-full bg-nature-950/60 backdrop-blur-md">
-        <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
-        <span>2 DAYS · KAKKADAMPOYIL · KERALA</span>
+      {/* Tiny Editorial Metadata (Bottom) */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 hidden sm:flex items-center gap-6 text-[10px] font-semibold tracking-[0.2em] uppercase text-warmgray-400">
+        <span>SEP 05–06</span>
+        <div className="h-3 w-px bg-ivory-100/20" />
+        <span className="text-ivory-100">KAKKADAMPOYIL</span>
+        <div className="h-3 w-px bg-ivory-100/20" />
+        <span className="text-gold">₹1,799 / PERSON</span>
       </div>
 
-      {/* Minimal Scroll Cue Indicator (Bottom-Center) */}
+      {/* Scroll Indicator */}
       <motion.a
         href="#editorial-intro"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.8, duration: 0.6 }}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1.5 text-[9.5px] font-semibold tracking-[0.25em] uppercase text-warmgray-400 hover:text-ivory-100 transition-colors cursor-pointer group"
+        className="absolute bottom-6 right-6 sm:right-10 z-10 hidden md:flex items-center gap-2 text-[9.5px] font-semibold tracking-widest uppercase text-warmgray-400 hover:text-ivory-100 transition-colors cursor-pointer"
       >
-        <span>SCROLL TO EXPLORE</span>
-        <motion.div
-          animate={{ y: [0, 4, 0] }}
-          transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
-        >
-          <ArrowDown className="w-3.5 h-3.5 text-gold" />
-        </motion.div>
+        <span>EXPLORE</span>
+        <ArrowDown className="w-3.5 h-3.5 text-gold animate-bounce" />
       </motion.a>
     </section>
   );

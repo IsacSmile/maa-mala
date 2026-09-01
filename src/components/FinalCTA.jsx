@@ -4,7 +4,7 @@ import { PhoneCall, ArrowRight } from 'lucide-react';
 
 export default function FinalCTA({ onOpenBooking }) {
   return (
-    <section className="py-24 sm:py-32 bg-nature-950 text-ivory-100 border-t border-ivory-100/10">
+    <section className="py-20 sm:py-32 bg-nature-950 text-ivory-100 border-t border-ivory-100/10">
       <div className="max-w-7xl mx-auto px-6 sm:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Left Column: 60% Width Real Camp Photograph */}
@@ -22,10 +22,6 @@ export default function FinalCTA({ onOpenBooking }) {
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter contrast-[1.05]"
               />
             </div>
-            {/* Subtle Overlay Label */}
-            <div className="absolute top-4 left-4 text-[9.5px] font-semibold tracking-widest uppercase text-ivory-100/80 bg-nature-950/70 backdrop-blur-sm px-3 py-1 rounded-full border border-ivory-100/10">
-              NEXT CAMP · SEP 05–06
-            </div>
           </motion.div>
 
           {/* Right Column: 40% Width Booking Information & Action */}
@@ -38,7 +34,7 @@ export default function FinalCTA({ onOpenBooking }) {
           >
             <div>
               <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-gold mb-3 block">
-                RESERVE YOUR SPOT
+                RESERVE YOUR CAMPING SPOT
               </span>
               <h2 className="text-3xl sm:text-5xl font-serif font-extrabold text-ivory-100 leading-[1.12]">
                 Ready to disappear <br />
@@ -46,12 +42,12 @@ export default function FinalCTA({ onOpenBooking }) {
               </h2>
             </div>
 
-            {/* Practical Booking Metadata Line */}
-            <div className="py-3 px-4 rounded-lg bg-nature-900/60 border border-ivory-100/10 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-semibold uppercase tracking-wider text-warmgray-400">
+            {/* Clean Editorial Metadata (No Boxes, No Pills) */}
+            <div className="flex flex-wrap items-center gap-4 text-xs font-semibold uppercase tracking-wider text-warmgray-400">
               <span className="text-ivory-100">SEP 05–06</span>
-              <span className="text-gold">•</span>
+              <div className="h-3.5 w-px bg-ivory-100/20" />
               <span>KAKKADAMPOYIL</span>
-              <span className="text-gold">•</span>
+              <div className="h-3.5 w-px bg-ivory-100/20" />
               <span className="text-gold font-bold">₹1,799 / PERSON</span>
             </div>
 
@@ -75,7 +71,7 @@ export default function FinalCTA({ onOpenBooking }) {
                 href="#reels"
                 className="text-xs font-semibold uppercase tracking-widest text-warmgray-400 hover:text-ivory-100 transition-colors flex items-center justify-center gap-2 py-2"
               >
-                <span>VIEW GALLERY</span>
+                <span>VIEW CAMP GALLERY</span>
                 <ArrowRight className="w-3.5 h-3.5 text-gold" />
               </a>
             </div>
