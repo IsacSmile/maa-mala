@@ -102,9 +102,22 @@ export default function Footer() {
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-warmgray-400">
           <p>© {new Date().getFullYear()} MAA MALA™. All rights reserved.</p>
 
+          <p className="flex items-center gap-1.5 text-xs text-warmgray-400">
+            <span>Engineered by</span>
+            <a
+              href="https://www.instagram.com/faiz_imam__/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-gold hover:text-ivory-100 font-semibold transition-colors"
+            >
+              <span>Faiz.I</span>
+              <InstagramIcon className="w-3.5 h-3.5 text-gold shrink-0" />
+            </a>
+          </p>
+
           <button
             onClick={scrollToTop}
-            className="flex items-center gap-2 text-xs uppercase tracking-widest text-ivory-100 hover:text-gold transition-colors"
+            className="flex items-center gap-2 text-xs uppercase tracking-widest text-ivory-100 hover:text-gold transition-colors cursor-pointer"
           >
             <span>Back to Top</span>
             <ArrowUp className="w-3.5 h-3.5" />
