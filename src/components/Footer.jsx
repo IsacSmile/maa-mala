@@ -13,8 +13,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 pb-16 border-b border-ivory-100/10">
           {/* Col 1: Brand Info */}
           <div className="md:col-span-5 flex flex-col gap-4 text-left">
-            <a href="#home" className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-full overflow-hidden border border-ivory-100/20 p-0.5 bg-nature-900">
+            <a href="#home" className="flex items-center gap-3.5">
+              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full overflow-hidden border border-ivory-100/20 p-0.5 bg-nature-900 shrink-0">
                 <img
                   src="/images/logo.png"
                   alt="MAA MALA™ Logo"
@@ -25,7 +25,7 @@ export default function Footer() {
                 <span className="font-extrabold text-base tracking-tight text-ivory-100 leading-none">
                   MAA MALA<span className="text-gold">™</span>
                 </span>
-                <span className="text-[9px] text-warmgray-400 tracking-widest font-semibold uppercase mt-1">
+                <span className="text-[9px] text-gold tracking-widest font-semibold uppercase mt-1">
                   Trails • Peace • Stories
                 </span>
               </div>
