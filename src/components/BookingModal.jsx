@@ -1,43 +1,60 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, PhoneCall, AlertCircle, CheckCircle2, Plus, Minus, Compass } from 'lucide-react';
+import { X, PhoneCall, AlertCircle, CheckCircle2, Plus, Minus, Compass, ChevronDown, Check } from 'lucide-react';
 
 const WHATSAPP_NUMBER = '919400921124';
 
 const ADVENTURE_OPTIONS = [
-  'Strangers Camp @ Kakkadampoyil (Sep 05–06)',
-  'Tent & Cottage Stay',
-  'Offroad Jeep Safari',
-  'Stream & Forest Hiking',
-  'Campfire Jam & Acoustic Night',
+  { id: 'camp', title: 'Strangers Camp @ Kakkadampoyil', subtitle: 'Sep 05–06 · Full Experience' },
+  { id: 'tent', title: 'Tent & Cottage Stay', subtitle: 'Overnight Highland Camping' },
+  { id: 'safari', title: 'Offroad Jeep Safari', subtitle: 'Highland Trail Trailblaze' },
+  { id: 'hiking', title: 'Stream & Forest Hiking', subtitle: 'Waterfall & Forest Trek' },
+  { id: 'campfire', title: 'Campfire Jam & Acoustic Night', subtitle: 'Music under stars' },
 ];
 
 export default function BookingModal({ isOpen, onClose }) {
   const [formData, setFormData] = useState({
-    adventureName: ADVENTURE_OPTIONS[0],
+    adventureName: ADVENTURE_OPTIONS[0].title,
     fullName: '',
     mobile: '',
     maleCount: 1,
     femaleCount: 0,
   });
 
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const [errors, setErrors] = useState({});
   const [showToast, setShowToast] = useState(false);
+  const dropdownRef = useRef(null);
 
   // Computed total guests count
   const totalGuests = (Number(formData.maleCount) || 0) + (Number(formData.femaleCount) || 0);
   const totalPrice = totalGuests * 1799;
 
-  // Handle ESC key press to close modal
+  // Handle ESC key & Click Outside to close dropdown / modal
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape' && isOpen) {
-        onClose();
+        if (dropdownOpen) {
+          setDropdownOpen(false);
+        } else {
+          onClose();
+        }
       }
     };
+
+    const handleClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setDropdownOpen(false);
+      }
+    };
+
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen, onClose]);
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isOpen, dropdownOpen, onClose]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -186,32 +203,74 @@ Please share the booking details and availability.`;
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-                {/* 1. Adventure Name Selection */}
-                <div>
-                  <label htmlFor="adventureName" className="block text-xs font-semibold uppercase tracking-wider text-warmgray-400 mb-1.5 flex items-center gap-1.5">
+                {/* 1. Styled Custom Custom Adventure Package Dropdown */}
+                <div className="relative" ref={dropdownRef}>
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-warmgray-400 mb-1.5 flex items-center gap-1.5">
                     <Compass className="w-3.5 h-3.5 text-gold shrink-0" />
                     <span>Adventure Package</span> <span className="text-gold">*</span>
                   </label>
-                  <div className="relative">
-                    <select
-                      id="adventureName"
-                      name="adventureName"
-                      value={formData.adventureName}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-lg bg-nature-900 border border-ivory-100/15 text-xs sm:text-sm text-ivory-100 focus:outline-none focus:ring-1 focus:ring-gold transition-colors appearance-none cursor-pointer"
-                    >
-                      {ADVENTURE_OPTIONS.map((opt) => (
-                        <option key={opt} value={opt} className="bg-nature-950 text-ivory-100">
-                          {opt}
-                        </option>
-                      ))}
-                    </select>
-                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-warmgray-400">
-                      <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                        <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
-                      </svg>
-                    </div>
-                  </div>
+
+                  {/* Trigger Button */}
+                  <button
+                    type="button"
+                    onClick={() => setDropdownOpen(!dropdownOpen)}
+                    className={`w-full px-4 py-3 rounded-lg bg-nature-900 border text-xs sm:text-sm text-left flex items-center justify-between gap-3 transition-all cursor-pointer ${
+                      dropdownOpen
+                        ? 'border-gold ring-1 ring-gold/40 shadow-lg'
+                        : 'border-ivory-100/15 hover:border-ivory-100/30'
+                    }`}
+                  >
+                    <span className="font-medium text-ivory-100 truncate">
+                      {formData.adventureName}
+                    </span>
+                    <ChevronDown
+                      className={`w-4 h-4 shrink-0 transition-transform duration-300 ${
+                        dropdownOpen ? 'rotate-180 text-gold' : 'text-warmgray-400'
+                      }`}
+                    />
+                  </button>
+
+                  {/* Dropdown Options Menu */}
+                  <AnimatePresence>
+                    {dropdownOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 6, scale: 0.98 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 6, scale: 0.98 }}
+                        transition={{ duration: 0.18, ease: 'easeOut' }}
+                        className="absolute left-0 right-0 top-full mt-1.5 z-40 bg-nature-900/98 backdrop-blur-xl border border-gold/30 rounded-xl p-1.5 shadow-2xl flex flex-col gap-1 max-h-60 overflow-y-auto"
+                      >
+                        {ADVENTURE_OPTIONS.map((opt) => {
+                          const isSelected = formData.adventureName === opt.title;
+                          return (
+                            <button
+                              key={opt.id}
+                              type="button"
+                              onClick={() => {
+                                setFormData((prev) => ({ ...prev, adventureName: opt.title }));
+                                setDropdownOpen(false);
+                              }}
+                              className={`w-full text-left p-2.5 rounded-lg transition-all flex items-center justify-between gap-3 cursor-pointer ${
+                                isSelected
+                                  ? 'bg-forest/30 border border-gold/40 text-gold font-semibold'
+                                  : 'text-ivory-200 hover:bg-nature-850 hover:text-white'
+                              }`}
+                            >
+                              <div className="flex flex-col text-left">
+                                <span className="text-xs sm:text-sm font-medium leading-tight">
+                                  {opt.title}
+                                </span>
+                                <span className="text-[10px] text-warmgray-400 mt-0.5 font-sans">
+                                  {opt.subtitle}
+                                </span>
+                              </div>
+                              {isSelected && <Check className="w-4 h-4 text-gold shrink-0" />}
+                            </button>
+                          );
+                        })}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
 
                 {/* 2. Full Name */}
