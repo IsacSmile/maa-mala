@@ -361,10 +361,10 @@ Please share the booking details and availability.`;
                 {/* Submit CTA Button */}
                 <button
                   type="submit"
-                  className="w-full py-3.5 px-6 rounded-lg bg-forest hover:bg-forest-hover text-ivory-100 font-semibold text-xs uppercase tracking-wider shadow-2xl transition-all border border-white/10 flex items-center justify-center gap-2 mt-4"
+                  className="w-full py-3.5 px-6 rounded-lg bg-forest hover:bg-forest-hover text-ivory-100 font-semibold text-xs uppercase tracking-wider shadow-2xl transition-all border border-white/10 flex items-center justify-center gap-2 mt-4 cursor-pointer"
                 >
                   <PhoneCall className="w-4 h-4" />
-                  <span>Continue on WhatsApp</span>
+                  <span>BOOK VIA WHATSAPP</span>
                 </button>
               </form>
             )}
