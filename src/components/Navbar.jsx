@@ -50,8 +50,8 @@ export default function Navbar({ onOpenBooking }) {
                 <span className="font-extrabold text-xs sm:text-sm tracking-tight text-ivory-100 leading-none">
                   MAA MALA<span className="text-gold">™</span>
                 </span>
-                <span className="text-[7.5px] sm:text-[8.5px] text-gold tracking-[0.18em] font-semibold uppercase mt-0.5 whitespace-nowrap">
-                  CAMPERS FOR ADVENTURES · KAKKADAMPOYIL
+                <span className="text-[8px] sm:text-[9px] text-gold tracking-[0.18em] font-semibold uppercase mt-0.5 whitespace-nowrap">
+                  Trails • Peace • Stories
                 </span>
               </div>
             </a>
