@@ -54,13 +54,13 @@ export default function Navbar() {
                 <span className="font-extrabold text-base sm:text-lg tracking-tight text-cream flex items-center gap-1 leading-tight">
                   MAA MALA<span className="text-gold-400">™</span>
                 </span>
-                <span className="text-[10px] text-forest-300 tracking-wider font-semibold uppercase">
-                  Campers for Adventures
+                <span className="text-[10px] text-gold-400 tracking-widest font-bold uppercase">
+                  Trails • Peace • Stories
                 </span>
               </div>
             </a>
 
-            {/* Navigation Links (Fixed Padding & Spacing) */}
+            {/* Navigation Links */}
             <div className="hidden lg:flex items-center gap-1 bg-white/5 border border-white/10 p-1.5 rounded-full backdrop-blur-md">
               {NAV_ITEMS.map((item) => (
                 <a
@@ -73,7 +73,7 @@ export default function Navbar() {
               ))}
             </div>
 
-            {/* Right Action Button with Soft Glow */}
+            {/* Right Action Button */}
             <div className="hidden sm:flex items-center shrink-0">
               <motion.a
                 href="https://wa.me/919400921124?text=Hi%20MAA%20MALA,%20I%20want%20to%20book%20Strangers%20Camp"
