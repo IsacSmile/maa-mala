@@ -29,10 +29,14 @@ export default function Navbar({ onOpenBooking }) {
           initial={{ y: -40, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className={`relative rounded-full transition-all duration-500 py-2.5 sm:py-3.5 px-5 sm:px-8 border shadow-2xl ${
-            scrolled
+          className={`relative transition-all duration-500 py-2.5 sm:py-3.5 px-5 sm:px-8 border shadow-2xl ${
+            mobileMenuOpen ? 'rounded-2xl sm:rounded-full bg-nature-950/95 backdrop-blur-2xl border-ivory-100/20' : 'rounded-full'
+          } ${
+            scrolled && !mobileMenuOpen
               ? 'bg-nature-950/95 backdrop-blur-2xl border-ivory-100/20 py-2 sm:py-3'
-              : 'bg-nature-950/50 backdrop-blur-md border-ivory-100/10'
+              : !mobileMenuOpen
+              ? 'bg-nature-950/50 backdrop-blur-md border-ivory-100/10'
+              : ''
           }`}
         >
           <div className="flex items-center justify-between gap-3 sm:gap-6">
