@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { PhoneCall, Compass, Calendar, MapPin, CheckCircle2, Tag } from 'lucide-react';
+import { PhoneCall, Compass, Calendar, MapPin, CheckCircle2, Tag, Sparkles } from 'lucide-react';
 import { HERO_STATS } from '../data/mockData';
 
 export default function Hero() {
@@ -16,7 +16,7 @@ export default function Hero() {
   };
 
   const itemVariants = {
-    hidden: { y: 35, opacity: 0 },
+    hidden: { y: 30, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
@@ -25,10 +25,11 @@ export default function Hero() {
   };
 
   return (
-    <section id="home" className="relative pt-28 pb-16 md:pt-36 md:pb-28 overflow-hidden atmospheric-fog">
-      {/* Soft Atmospheric Fog & Mountain Silhouette Glows */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-forest-600/20 rounded-full blur-[160px] pointer-events-none -z-10" />
-      <div className="absolute top-1/3 right-10 w-[450px] h-[450px] bg-gold-500/15 rounded-full blur-[140px] pointer-events-none -z-10" />
+    <section id="home" className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden atmospheric-fog">
+      {/* Handcrafted Background Layers: Atmospheric Fog, Mountain Silhouette & Soft Radial Glows */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-forest-600/18 rounded-full blur-[170px] pointer-events-none -z-10" />
+      <div className="absolute top-1/3 right-10 w-[500px] h-[500px] bg-gold-500/12 rounded-full blur-[150px] pointer-events-none -z-10" />
+      <div className="absolute inset-0 bg-gradient-to-b from-charcoal-950/60 via-transparent to-charcoal-950 pointer-events-none -z-10" />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         <motion.div
@@ -37,20 +38,22 @@ export default function Hero() {
           animate="visible"
           className="flex flex-col items-center text-center"
         >
-          {/* Small Floating Event Badge */}
-          <motion.div variants={itemVariants} className="mb-5">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card border-forest-400/40 text-forest-300 text-xs font-semibold tracking-wide shadow-moss-glow">
+          {/* Small Floating Pill Badge */}
+          <motion.div variants={itemVariants} className="mb-6">
+            <div className="inline-flex items-center gap-2.5 px-4.5 py-1.5 rounded-full bg-black/70 border border-gold-500/40 text-cream text-xs font-bold tracking-wider shadow-2xl backdrop-blur-xl">
               <span className="flex h-2 w-2 relative">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-gold-500"></span>
               </span>
-              <span className="text-gold-400 font-bold tracking-wider uppercase">Upcoming Camp • SEP 05–06</span>
+              <span className="text-gold-400 font-extrabold tracking-widest uppercase">UPCOMING CAMP</span>
               <span className="text-slate-500">•</span>
-              <span className="text-cream">Kakkadampoyil</span>
+              <span className="text-cream font-bold">SEP 05–06</span>
+              <span className="text-slate-500">•</span>
+              <span className="text-emerald-300 font-semibold">Kakkadampoyil</span>
             </div>
           </motion.div>
 
-          {/* Main Headline */}
+          {/* Main Headline (Two Lines: White Serif + Gold Amber Gradient) */}
           <motion.h1
             variants={itemVariants}
             className="text-4xl sm:text-6xl lg:text-7xl font-serif font-black tracking-tight text-cream max-w-4xl leading-[1.12]"
@@ -61,9 +64,9 @@ export default function Hero() {
             </span>
           </motion.h1>
 
-          {/* Subheadline & Malayalam Tagline */}
-          <motion.div variants={itemVariants} className="mt-5 flex flex-col items-center gap-2 max-w-2xl">
-            <p className="text-lg sm:text-2xl font-bold text-emerald-300 tracking-wide">
+          {/* Malayalam Quote & Short English Subtitle */}
+          <motion.div variants={itemVariants} className="mt-6 flex flex-col items-center gap-2.5 max-w-2xl">
+            <p className="text-lg sm:text-2xl font-extrabold text-emerald-300 tracking-wide drop-shadow-md">
               "പാട്ടും കഥകളുമായി കക്കാടംപൊയിലിൽ കൂടിയാലോ?"
             </p>
             <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal max-w-xl">
@@ -71,42 +74,44 @@ export default function Hero() {
             </p>
           </motion.div>
 
-          {/* Two Premium Sleek Buttons (Reduced Height) */}
+          {/* Two Side-by-Side Handcrafted Buttons (Refined Heights & Micro-Interactions) */}
           <motion.div
             variants={itemVariants}
-            className="mt-7 flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto"
+            className="mt-8 flex flex-col sm:flex-row items-center gap-3.5 w-full sm:w-auto"
           >
+            {/* Primary Button: Solid Warm Green with Soft Glow */}
             <motion.a
               href="https://wa.me/919400921124?text=Hi%20MAA%20MALA,%20I%20want%20to%20book%20Strangers%20Camp%20at%20Kakkadampoyil"
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ scale: 1.04, boxShadow: '0 0 25px rgba(53, 140, 103, 0.4)' }}
+              whileHover={{ scale: 1.04, boxShadow: '0 0 30px rgba(53, 140, 103, 0.45)' }}
               whileTap={{ scale: 0.96 }}
-              className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-6 py-2.5 rounded-full bg-gradient-to-r from-emerald-600 via-forest-600 to-gold-600 text-cream font-bold text-sm shadow-lg border border-white/20 transition-all"
+              className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-6 py-2.5 rounded-full bg-gradient-to-r from-emerald-600 via-forest-600 to-forest-700 text-cream font-extrabold text-sm shadow-xl border border-white/20 transition-all"
             >
-              <PhoneCall className="w-4 h-4 text-cream" />
+              <PhoneCall className="w-4 h-4 text-cream shrink-0" />
               <span>Book via WhatsApp</span>
             </motion.a>
 
+            {/* Secondary Button: Outlined Glass Fill */}
             <motion.a
               href="#reels"
               whileHover={{ scale: 1.03, backgroundColor: 'rgba(255, 255, 255, 0.12)' }}
               whileTap={{ scale: 0.96 }}
-              className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-2.5 rounded-full glass-card border border-white/15 text-slate-200 hover:text-cream font-semibold text-sm transition-all"
+              className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-2.5 rounded-full glass-card border border-white/20 text-slate-200 hover:text-cream font-bold text-sm transition-all"
             >
-              <Compass className="w-4 h-4 text-gold-400" />
+              <Compass className="w-4 h-4 text-gold-400 shrink-0" />
               <span>View Camp Photos & Gallery</span>
             </motion.a>
           </motion.div>
 
-          {/* Camp Details Card */}
+          {/* Event Details Card */}
           <motion.div
             variants={itemVariants}
-            whileHover={{ y: -5, transition: { duration: 0.3 } }}
-            className="mt-12 w-full max-w-4xl rounded-3xl overflow-hidden glass-card border border-white/20 p-4 sm:p-6 relative shadow-luxury text-left"
+            whileHover={{ y: -4, transition: { duration: 0.3 } }}
+            className="mt-14 w-full max-w-4xl rounded-3xl overflow-hidden glass-card border border-white/20 p-5 sm:p-7 relative shadow-luxury text-left"
           >
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-center">
-              {/* Left Side: High-Quality Poster Image */}
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+              {/* Left: Event Poster Image */}
               <div className="md:col-span-5 relative aspect-[4/5] w-full rounded-2xl overflow-hidden shadow-xl border border-white/15 group">
                 <img
                   src="/images/strangers_camp.jpg"
@@ -118,8 +123,8 @@ export default function Hero() {
                 </div>
               </div>
 
-              {/* Right Side: Clean Information Layout */}
-              <div className="md:col-span-7 flex flex-col justify-between h-full gap-3">
+              {/* Right: Event Information */}
+              <div className="md:col-span-7 flex flex-col justify-between h-full gap-3.5">
                 <div>
                   <div className="flex items-center gap-2 text-xs font-extrabold text-gold-400 uppercase tracking-widest mb-1">
                     <MapPin className="w-3.5 h-3.5" />
@@ -143,7 +148,7 @@ export default function Hero() {
                 </div>
 
                 {/* Key Highlights Grid */}
-                <div className="grid grid-cols-2 gap-2 text-xs text-slate-200 font-medium py-2.5 border-y border-white/10">
+                <div className="grid grid-cols-2 gap-2 text-xs text-slate-200 font-medium py-3 border-y border-white/10">
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                     <span>Night Camping & Stay</span>
@@ -170,7 +175,7 @@ export default function Hero() {
                   </div>
                 </div>
 
-                {/* Price & Contact Row (Compact Button) */}
+                {/* Direct WhatsApp Booking Row */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pt-1">
                   <div className="flex flex-col">
                     <span className="text-[9px] text-slate-400 uppercase font-semibold">Direct WhatsApp Booking</span>
@@ -190,7 +195,7 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* Stats Section */}
+          {/* Stats Cards Section */}
           <motion.div
             variants={itemVariants}
             className="mt-10 w-full grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-5 max-w-4xl"
