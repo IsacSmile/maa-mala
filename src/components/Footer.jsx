@@ -108,10 +108,9 @@ export default function Footer() {
               href="https://www.instagram.com/faiz_imam__/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-gold hover:text-ivory-100 font-semibold transition-colors"
+              className="text-gold hover:text-ivory-100 font-semibold transition-colors"
             >
-              <span>Faiz.I</span>
-              <InstagramIcon className="w-3.5 h-3.5 text-gold shrink-0" />
+              Faiz.I
             </a>
           </p>
 
