@@ -104,6 +104,9 @@ export default function BookingModal({ isOpen, onClose }) {
 
     if (!validate()) return;
 
+    const numGuests = Math.max(1, parseInt(formData.totalGuests, 10) || 1);
+    const calculatedTotal = (numGuests * 1799).toLocaleString('en-IN');
+
     // Construct pre-filled WhatsApp message
     const message = `Hello, I would like to book Strangers Camp @ Kakkadampoyil.
 
@@ -112,6 +115,7 @@ Mobile: ${formData.mobile.trim()}
 Total Guests: ${formData.totalGuests}
 Male: ${formData.maleCount}
 Female: ${formData.femaleCount}
+Estimated Price: ₹${calculatedTotal} (All-Inclusive)
 
 Please share the booking details and availability.`;
 
@@ -352,10 +356,22 @@ Please share the booking details and availability.`;
                   </div>
                 )}
 
-                {/* Pricing Summary */}
-                <div className="pt-2 pb-1 flex items-center justify-between text-xs text-warmgray-400 border-t border-ivory-100/10">
-                  <span>Package Rate</span>
-                  <span className="font-serif font-bold text-gold text-sm">₹1,799 / Head (All-Inclusive)</span>
+                {/* Dynamic Pricing Summary */}
+                <div className="pt-3 pb-1 flex items-center justify-between text-xs text-warmgray-400 border-t border-ivory-100/10">
+                  <div className="flex flex-col text-left">
+                    <span className="font-semibold text-ivory-200">Total Package Price</span>
+                    <span className="text-[10px] text-warmgray-400 font-sans mt-0.5">
+                      ₹1,799 × {Math.max(1, parseInt(formData.totalGuests, 10) || 1)} guest{(parseInt(formData.totalGuests, 10) || 1) > 1 ? 's' : ''}
+                    </span>
+                  </div>
+                  <div className="text-right">
+                    <span className="font-serif font-bold text-gold text-base sm:text-lg block">
+                      ₹{(Math.max(1, parseInt(formData.totalGuests, 10) || 1) * 1799).toLocaleString('en-IN')}
+                    </span>
+                    <span className="text-[9px] text-warmgray-400 uppercase tracking-widest font-sans">
+                      All-Inclusive
+                    </span>
+                  </div>
                 </div>
 
                 {/* Submit CTA Button */}
