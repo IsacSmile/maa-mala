@@ -23,16 +23,16 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 px-3 sm:px-6 py-3.5 pointer-events-none transition-all duration-300">
+    <header className="fixed top-0 left-0 right-0 z-50 px-3 sm:px-6 py-4 pointer-events-none transition-all duration-300">
       <div className="max-w-6xl mx-auto pointer-events-auto">
         <motion.nav
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className={`relative rounded-3xl transition-all duration-500 ${
+          className={`relative rounded-full transition-all duration-500 ${
             scrolled
-              ? 'glass-nav shadow-emerald-glow border-white/15 py-3 px-5 sm:px-6 bg-charcoal-950/90 backdrop-blur-2xl'
-              : 'glass-nav border-white/12 py-3.5 px-5 sm:px-7 bg-charcoal-900/70 backdrop-blur-xl'
+              ? 'glass-nav shadow-emerald-glow border-white/15 py-3 px-6 sm:px-8 bg-charcoal-950/90 backdrop-blur-2xl'
+              : 'glass-nav border-white/12 py-3.5 px-6 sm:px-8 bg-charcoal-900/70 backdrop-blur-xl'
           }`}
         >
           <div className="flex items-center justify-between gap-4">
@@ -41,12 +41,12 @@ export default function Navbar() {
               <motion.div
                 whileHover={{ scale: 1.08, rotate: 3 }}
                 whileTap={{ scale: 0.95 }}
-                className="w-10 h-10 rounded-2xl overflow-hidden ring-2 ring-forest-400/40 p-0.5 bg-forest-900 shrink-0"
+                className="w-10 h-10 rounded-full overflow-hidden ring-2 ring-forest-400/40 p-0.5 bg-forest-900 shrink-0"
               >
                 <img
                   src="/images/logo.png"
                   alt="MAA MALA™ Logo"
-                  className="w-full h-full object-cover rounded-xl"
+                  className="w-full h-full object-cover rounded-full"
                 />
               </motion.div>
 
@@ -54,7 +54,7 @@ export default function Navbar() {
                 <span className="font-extrabold text-base sm:text-lg tracking-tight text-cream flex items-center gap-1 leading-tight">
                   MAA MALA<span className="text-gold-400">™</span>
                 </span>
-                <span className="text-[10px] text-gold-400 tracking-widest font-bold uppercase">
+                <span className="text-[10px] text-gold-400 tracking-wider font-bold uppercase">
                   Trails • Peace • Stories
                 </span>
               </div>
@@ -73,7 +73,7 @@ export default function Navbar() {
               ))}
             </div>
 
-            {/* Right Action Button */}
+            {/* Right Action Button with Full Pill Border Radius */}
             <div className="hidden sm:flex items-center shrink-0">
               <motion.a
                 href="https://wa.me/919400921124?text=Hi%20MAA%20MALA,%20I%20want%20to%20book%20Strangers%20Camp"
@@ -81,7 +81,7 @@ export default function Navbar() {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.04, boxShadow: '0 0 30px rgba(245, 158, 11, 0.4)' }}
                 whileTap={{ scale: 0.96 }}
-                className="flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-gradient-to-r from-gold-500 via-forest-600 to-forest-700 text-cream font-bold text-xs sm:text-sm shadow-lg border border-white/20 transition-all whitespace-nowrap shrink-0"
+                className="flex items-center gap-2 px-5.5 py-2.5 rounded-full bg-gradient-to-r from-gold-500 via-forest-600 to-forest-700 text-cream font-bold text-xs sm:text-sm shadow-lg border border-white/20 transition-all whitespace-nowrap shrink-0"
               >
                 <Compass className="w-4 h-4 text-cream shrink-0" />
                 <span>Book Adventure</span>
@@ -94,7 +94,7 @@ export default function Navbar() {
               <motion.button
                 whileTap={{ scale: 0.9 }}
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2.5 rounded-2xl bg-white/10 text-cream border border-white/10"
+                className="p-2.5 rounded-full bg-white/10 text-cream border border-white/10"
                 aria-label="Toggle menu"
               >
                 {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -130,7 +130,7 @@ export default function Navbar() {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={() => setMobileMenuOpen(false)}
-                      className="w-full flex items-center justify-center gap-2 py-3 rounded-2xl bg-gradient-to-r from-gold-500 to-forest-600 text-cream font-bold text-sm shadow-md"
+                      className="w-full flex items-center justify-center gap-2 py-3 rounded-full bg-gradient-to-r from-gold-500 to-forest-600 text-cream font-bold text-sm shadow-md"
                     >
                       <Compass className="w-4 h-4" />
                       <span>Book Your Adventure</span>
