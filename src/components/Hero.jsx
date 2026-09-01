@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { PhoneCall, ArrowRight, ArrowDown } from 'lucide-react';
 
-export default function Hero() {
+export default function Hero({ onOpenBooking }) {
   return (
     <section id="home" className="relative h-[99vh] min-h-[99vh] flex items-center justify-center text-center text-ivory-100 overflow-hidden pt-28 pb-16">
       {/* Full-Viewport Cinematic Background Image */}
@@ -63,17 +63,15 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.3, ease: 'easeOut' }}
           className="mt-8 flex flex-col sm:flex-row items-center gap-5 w-full sm:w-auto"
         >
-          <motion.a
-            href="https://wa.me/919400921124?text=Hi%20MAA%20MALA,%20I%20want%20to%20book%20Strangers%20Camp%20at%20Kakkadampoyil"
-            target="_blank"
-            rel="noopener noreferrer"
+          <motion.button
+            onClick={onOpenBooking}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-lg bg-forest hover:bg-forest-hover text-ivory-100 font-semibold text-xs tracking-wider uppercase shadow-2xl transition-all border border-white/10"
+            className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-lg bg-forest hover:bg-forest-hover text-ivory-100 font-semibold text-xs tracking-wider uppercase shadow-2xl transition-all border border-white/10 cursor-pointer"
           >
             <PhoneCall className="w-4 h-4 text-ivory-100 shrink-0" />
             <span>BOOK VIA WHATSAPP</span>
-          </motion.a>
+          </motion.button>
 
           <a
             href="#reels"

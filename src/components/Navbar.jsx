@@ -10,7 +10,7 @@ const NAV_ITEMS = [
   { name: 'Contact', href: '#contact' },
 ];
 
-export default function Navbar() {
+export default function Navbar({ onOpenBooking }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -71,15 +71,13 @@ export default function Navbar() {
 
             {/* Primary CTA Right */}
             <div className="hidden sm:flex items-center shrink-0">
-              <a
-                href="https://wa.me/919400921124?text=Hi%20MAA%20MALA,%20I%20want%20to%20book%20Strangers%20Camp"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-forest hover:bg-forest-hover text-ivory-100 font-semibold text-xs tracking-wider uppercase shadow-lg transition-all border border-white/10 whitespace-nowrap"
+              <button
+                onClick={onOpenBooking}
+                className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-forest hover:bg-forest-hover text-ivory-100 font-semibold text-xs tracking-wider uppercase shadow-lg transition-all border border-white/10 whitespace-nowrap cursor-pointer"
               >
                 <span>Book Adventure</span>
                 <ArrowUpRight className="w-3.5 h-3.5 text-ivory-200 shrink-0" />
-              </a>
+              </button>
             </div>
 
             {/* Mobile Menu Trigger */}
@@ -117,16 +115,16 @@ export default function Navbar() {
                     </a>
                   ))}
                   <div className="pt-2 mt-1 border-t border-ivory-100/10">
-                    <a
-                      href="https://wa.me/919400921124?text=Hi%20MAA%20MALA,%20I%20want%20to%20book%20Strangers%20Camp"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={() => setMobileMenuOpen(false)}
+                    <button
+                      onClick={() => {
+                        setMobileMenuOpen(false);
+                        onOpenBooking();
+                      }}
                       className="w-full flex items-center justify-center gap-2 py-2 rounded-full bg-forest text-ivory-100 font-semibold text-xs uppercase tracking-wider shadow-md"
                     >
                       <span>Book Adventure</span>
                       <ArrowUpRight className="w-3.5 h-3.5" />
-                    </a>
+                    </button>
                   </div>
                 </div>
               </motion.div>
